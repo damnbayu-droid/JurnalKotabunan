@@ -56,12 +56,23 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
             return NextResponse.json({ error: 'File must be an image' }, { status: 400 })
         }
 
-        const existingCount = countExistingImages(article.featuredImageUrl, article.content)
-        if (existingCount >= MAX_IMAGES_PER_ARTICLE) {
-            return NextResponse.json(
-                { error: `Article already has the maximum of ${MAX_IMAGES_PER_ARTICLE} photos` },
-                { status: 400 }
-            )
+        // The 3-photo cap only makes sense for 'middle'/'bottom' - those
+        // ADD a new <img> into the content on every call. 'top' REPLACES
+        // the one dedicated featuredImageUrl slot - it never increases the
+        // photo count, so it must never be blocked by this check. Bug found
+        // 2026-09-02: this ran unconditionally, so once an article reached
+        // 3 photos (featuredImageUrl + 2 content images), the admin could
+        // never update/replace the featured photo again either - the "Foto
+        // Utama" button just always failed with "already has the maximum",
+        // even though replacing it wouldn't have added a photo at all.
+        if (position !== 'top') {
+            const existingCount = countExistingImages(article.featuredImageUrl, article.content)
+            if (existingCount >= MAX_IMAGES_PER_ARTICLE) {
+                return NextResponse.json(
+                    { error: `Article already has the maximum of ${MAX_IMAGES_PER_ARTICLE} photos` },
+                    { status: 400 }
+                )
+            }
         }
 
         const inputBuffer = Buffer.from(await file.arrayBuffer())

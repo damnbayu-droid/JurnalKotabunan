@@ -21,6 +21,20 @@ const nextConfig: NextConfig = {
     cpus: 1,
   },
   images: {
+    // Custom breakpoint lists (replaces Next's defaults entirely, not a
+    // merge). Confirmed via PageSpeed Insights (2026-09-02, mobile) that
+    // the default lists were too coarse for this site's actual `sizes`
+    // props (40/64/80/96/240px thumbnails, see article-card.tsx,
+    // popular-news-carousel.tsx, page.tsx): on a 2x-3x DPR phone, a
+    // sizes="240px" card jumped straight from the default imageSizes'
+    // 384px ceiling to deviceSizes' 640px - a real image ~2.7x wider than
+    // the box ever displays it at (confirmed against the site's actual
+    // rendered HTML, not just the PSI report). imageSizes below fills that
+    // gap for the small/medium thumbnail sizes actually in use;
+    // deviceSizes keeps enough range for the ~800px hero image up to a 3x
+    // DPR ultra-wide display.
+    imageSizes: [16, 32, 40, 48, 64, 80, 96, 128, 160, 200, 240, 256, 320, 384],
+    deviceSizes: [384, 480, 640, 750, 828, 1080, 1200, 1920, 2560, 3840],
     remotePatterns: [
       {
         protocol: 'https',

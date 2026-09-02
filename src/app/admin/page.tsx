@@ -2425,14 +2425,27 @@ export default function MasterAdminDashboard() {
                               Foto Artikel ({photoCount(editingArticle)}/3) - dikonversi otomatis ke WebP
                             </Label>
                             <div className="flex flex-wrap gap-2">
-                              {(['top', 'middle', 'bottom'] as const).map((slot) => (
+                              {(['top', 'middle', 'bottom'] as const).map((slot) => {
+                                // 'top' REPLACES the one featuredImageUrl slot
+                                // (never adds a new photo), so the 3-photo cap
+                                // must not gate it - only 'middle'/'bottom'
+                                // actually add a new <img> to the content. Bug
+                                // found 2026-09-02: this button used to disable
+                                // for ALL three slots once an article hit 3
+                                // photos, so "Foto Utama" (replace) became
+                                // permanently unclickable on any article that
+                                // already had its featured image + 2 content
+                                // photos - matches the server-side fix in
+                                // src/app/api/admin/articles/[id]/upload-image.
+                                const atCap = slot !== 'top' && photoCount(editingArticle) >= 3
+                                return (
                                 <div key={slot}>
                                   <input
                                     type="file"
                                     accept="image/*"
                                     className="hidden"
                                     id={`photo-upload-${slot}`}
-                                    disabled={uploadingSlot !== null || photoCount(editingArticle) >= 3}
+                                    disabled={uploadingSlot !== null || atCap}
                                     onChange={(e) => {
                                       const file = e.target.files?.[0]
                                       if (file) handlePhotoUpload(slot, file)
@@ -2443,7 +2456,7 @@ export default function MasterAdminDashboard() {
                                     type="button"
                                     variant="outline"
                                     size="sm"
-                                    disabled={uploadingSlot !== null || photoCount(editingArticle) >= 3}
+                                    disabled={uploadingSlot !== null || atCap}
                                     onClick={() => document.getElementById(`photo-upload-${slot}`)?.click()}
                                   >
                                     {uploadingSlot === slot ? (
@@ -2454,7 +2467,8 @@ export default function MasterAdminDashboard() {
                                     {slot === 'top' ? 'Foto Utama' : slot === 'middle' ? 'Foto Tengah' : 'Foto Bawah'}
                                   </Button>
                                 </div>
-                              ))}
+                                )
+                              })}
                             </div>
                           </div>
                         ) : (

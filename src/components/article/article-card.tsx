@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { Clock, User, Eye, FileText } from 'lucide-react'
+import { BALI_TZ } from '@/lib/date'
 
 interface Article {
   id: string
@@ -63,6 +64,7 @@ export function ArticleCard({ article, variant = 'default' }: ArticleCardProps) 
                   day: 'numeric',
                   month: 'short',
                   year: 'numeric',
+                  timeZone: BALI_TZ,
                 })}
               </span>
             </div>
@@ -116,6 +118,7 @@ export function ArticleCard({ article, variant = 'default' }: ArticleCardProps) 
                 {article.publishedAt?.toLocaleDateString('en-US', {
                   day: 'numeric',
                   month: 'short',
+                  timeZone: BALI_TZ,
                 })}
               </span>
             </div>
