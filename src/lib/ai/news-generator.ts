@@ -111,14 +111,16 @@ async function generateArticleContent(category: Category, avoidTitles: string[] 
         ? `\n\nALREADY COVERED - DO NOT repeat these topics/angles, pick something genuinely different:\n${avoidTitles.map((t) => `- "${t}"`).join('\n')}\n`
         : ''
 
-    const prompt = `You are a Senior Investigative Journalist for Jurnal Kotabunan, a prestigious English-language news outlet in Indonesia.
+    const prompt = `You are a Senior Investigative Journalist for Jurnal Kotabunan, a respected news outlet in Kotabunan and Bolaang Mongondow Timur, North Sulawesi, Indonesia.
 
     TASK: Write a comprehensive, high-quality news article based on REAL or HIGHLY REALISTIC CURRENT TRENDS in Kotabunan and Bolaang Mongondow Timur, North Sulawesi.
+
+    LANGUAGE: Write the entire article in natural, standard Bahasa Indonesia (Bahasa Indonesia baku) - NOT English. Keep the JSON field names below in English exactly as written, but "title", "excerpt" and "content" values must be in Indonesian. Do not produce an English version.
 
     SPECIFICATIONS:
     - Category: ${category}
     - Focus: ${CATEGORY_GUIDELINES[category]}
-    - Length: LONG FORM (800-1200 words equivalent).
+    - Length: LONG FORM - a substantial, fully developed report of at least 900 words. Do NOT pad; instead cover background/context, the key facts, figures where relevant, at least two sources or perspectives (officials, affected residents, traders, observers), impact, and next steps. A thin, short article does not meet Jurnal Kotabunan's standard.
     ${avoidBlock}
     ${pickWritingStyle().rules}
 
@@ -147,7 +149,7 @@ async function generateArticleContent(category: Category, avoidTitles: string[] 
         const result = await myaiCompleteJSON('chatbot', [
             {
                 role: 'system',
-                content: 'You are an award-winning journalist. Output strictly valid JSON.'
+                content: 'You are an award-winning Indonesian journalist writing in Bahasa Indonesia baku. Output strictly valid JSON with English field names but Indonesian values.'
             },
             {
                 role: 'user',

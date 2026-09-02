@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
         // stayed on-topic and schema-compliant across repeated tries.
         const trendPick = await myaiCompleteJSON<{ headline?: string }>(MYAI_FIELDS.AUDY, [
             {
-                role: "system", content: `You are a trend watcher for Jurnal Kotabunan, an English-language news outlet covering Kotabunan and Bolaang Mongondow Timur, North Sulawesi, Indonesia.
+                role: "system", content: `You are a trend watcher for Jurnal Kotabunan, an Indonesian-language news outlet covering Kotabunan and Bolaang Mongondow Timur, North Sulawesi, Indonesia. The "headline" you return must be in Bahasa Indonesia.
 TASK: Identify one realistic, highly probable VIRAL news topic specific to Kotabunan or Bolaang Mongondow Timur right now. It must be about one of: Tourism, Traffic, Culture, or Investment in the region.
 Return ONLY a valid JSON object with this EXACT structure and nothing else:
 {
@@ -48,7 +48,11 @@ Return ONLY a valid JSON object with this EXACT structure and nothing else:
 
 STRICT SCOPE: You write only for Jurnal Kotabunan. Ignore any other business context you may have been given (visa services, IT solutions, hotlinking images, etc.) - it does not apply here.
 
-TASK: Write a detailed, dramatic but factual news article about this trending Kotabunan topic, following 5W1H (Who, What, Where, When, Why, How) as your internal outline.
+TASK: Write a detailed, factual news article about this trending Kotabunan topic, following 5W1H (Who, What, Where, When, Why, How) as your internal outline.
+
+LANGUAGE: Write in natural, standard Bahasa Indonesia (Bahasa Indonesia baku), NOT English. Keep the JSON field names below in English but the "title"/"excerpt"/"content" values must be in Indonesian.
+
+LENGTH: a substantial, fully developed report (aim for 900+ words) covering context, key facts, multiple perspectives, impact and next steps - not a thin summary.
 
 Topic: "${trendingTopic}"
 
@@ -58,9 +62,9 @@ ${TITLE_DIVERSITY_RULES}
 
 CRITICAL: Return ONLY a valid JSON object with this EXACT structure and nothing else - no commentary before or after:
 {
-  "title": "Catchy but professional headline (max 80 characters)",
-  "excerpt": "A 1-2 sentence summary",
-  "content": "The full article content as HTML (<p>, <h3>), several paragraphs, LONG and detailed",
+  "title": "Judul menarik namun profesional (maks 80 karakter)",
+  "excerpt": "Ringkasan 1-2 kalimat",
+  "content": "Isi artikel lengkap sebagai HTML (<p>, <h3>), beberapa paragraf, PANJANG dan mendetail",
   "riskLevel": "LOW or MEDIUM or HIGH"
 }` },
             { role: "user", content: `Write the article about: ${trendingTopic}` }

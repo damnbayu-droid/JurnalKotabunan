@@ -105,14 +105,31 @@ function normalizeResult(result: unknown): string {
 // hijacking stopped. `field` is still required by the gateway even when
 // pinning a model, so this always sends both.
 // The actual MyAI OS network call - only reached when MYAI_API_KEY is set.
+// MYAI_MODEL env overrides whatever model the call site pinned, so the
+// gateway model can be chosen centrally (e.g. deepseek-v4-flash for the
+// seed) without touching news-generator.ts / rewrite-external-news.ts / etc.
 async function myaiOsComplete(field: MyaiField, messages: MyaiMessage[], model?: string): Promise<string> {
+    const pinned = process.env.MYAI_MODEL?.trim() || model
+    // The gateway's default max_tokens for the 'chatbot' field is only
+    // 2000 - it silently truncates (finish_reason: length) a long article,
+    // and a reasoning model can burn the whole budget before writing a
+    // word. The gateway DOES honour an explicit max_tokens, so send a
+    // generous one. Reasoning models (deepseek-v4-flash, deepseek-reasoner,
+    // kimi-k3) still misbehave here even at 6000 - use gpt-4o-mini or
+    // gemini-3.7-flash for MYAI_MODEL.
+    const maxTokens = Number(process.env.MYAI_MAX_TOKENS) || 6000
     const res = await fetch(`${MYAI_BASE_URL}/chat/completions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.MYAI_API_KEY}`,
         },
-        body: JSON.stringify(model ? { field, model, messages } : { field, messages }),
+        body: JSON.stringify({
+            field,
+            ...(pinned ? { model: pinned } : {}),
+            max_tokens: maxTokens,
+            messages,
+        }),
     })
 
     if (!res.ok) {
@@ -138,9 +155,17 @@ async function runCompletion(
     json: boolean,
 ): Promise<string> {
     const hasMyai = !!process.env.MYAI_API_KEY
+    const hasFallback = fallbackConfigured()
+    // AI_TEXT_PRIMARY=free (or "fallback") -> run the free providers FIRST
+    // and use MyAI OS only as the paid rescue. This is the seed setup: Groq
+    // etc. do the volume, MyAI OS catches whatever they can't. Default
+    // ("myai") keeps MyAI OS as primary once the seed is done.
+    const preferFree = ['free', 'fallback'].includes(
+        (process.env.AI_TEXT_PRIMARY || 'myai').toLowerCase().trim(),
+    )
 
     if (!hasMyai) {
-        if (!fallbackConfigured()) {
+        if (!hasFallback) {
             throw new Error(
                 'No AI provider configured: set MYAI_API_KEY, or GROQ_API_KEY / OPENROUTER_API_KEY / ZAI_API_KEY for the fallback router.',
             )
@@ -148,10 +173,21 @@ async function runCompletion(
         return fallbackTextComplete(messages as OAIMessage[], { json })
     }
 
+    if (preferFree && hasFallback) {
+        try {
+            return await fallbackTextComplete(messages as OAIMessage[], { json })
+        } catch (err) {
+            console.warn(
+                `[myaiClient] fallback providers exhausted, rescuing with MyAI OS: ${(err as Error).message.slice(0, 160)}`,
+            )
+            return myaiOsComplete(field, messages, model)
+        }
+    }
+
     try {
         return await myaiOsComplete(field, messages, model)
     } catch (err) {
-        if (fallbackConfigured()) {
+        if (hasFallback) {
             console.warn(
                 `[myaiClient] MyAI OS failed, using fallback router: ${(err as Error).message.slice(0, 160)}`,
             )

@@ -82,14 +82,25 @@ ${pickWritingStyle().rules}
 
 ${TITLE_DIVERSITY_RULES}${legalPrecedents}
 
-CRITICAL: Regardless of what language the source material is written in, you MUST write the
-article in English and respond with EXACTLY these JSON field names in English - never
-translate/rename them. Return ONLY a valid JSON object with this EXACT structure and nothing
-else - no commentary before or after:
+LANGUAGE: Write the article in natural, standard Bahasa Indonesia (Bahasa Indonesia baku),
+regardless of the source material's language. EXCEPTION: if the source material contains a
+direct quote or statement originally spoken in Bahasa Manado (Manado Malay / bahasa Melayu
+Manado), reproduce that quotation verbatim in Bahasa Manado inside quotation marks - do NOT
+"correct" it into baku Indonesian - and attribute it to the speaker; the narration around it
+stays in baku Indonesian. Keep the JSON field NAMES below in English exactly as written, but
+the "title", "excerpt" and "content" VALUES must be in Indonesian. Do not produce an English
+version.
+
+LENGTH: a substantial, fully developed report (aim for 900+ words) - cover context, the key
+facts and figures, multiple sources/perspectives, impact and next steps. A thin, padded-out
+article does not meet Jurnal Kotabunan's standard.
+
+Return ONLY a valid JSON object with this EXACT structure and nothing else - no commentary
+before or after:
 {
-  "title": "Catchy but professional headline (max 80 characters)",
-  "excerpt": "A 1-2 sentence summary",
-  "content": "The full article content as HTML (<p>, <h3>), several paragraphs, LONG and detailed",
+  "title": "Judul yang menarik namun profesional (maks 80 karakter)",
+  "excerpt": "Ringkasan 1-2 kalimat",
+  "content": "Isi artikel lengkap sebagai HTML (<p>, <h3>), beberapa paragraf, PANJANG dan mendetail",
   "riskLevel": "LOW or MEDIUM or HIGH"
 }` },
         { role: 'user', content: `Write a news article about the story described in this source material (from ${url}):\n\n${content}` },

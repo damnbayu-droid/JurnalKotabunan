@@ -63,3 +63,5 @@ prompt
 server.log
 # Skills directory
 /skills/
+# User seed-research working docs - kept local, not committed (per owner)
+seedrisetjurnalkotabunan*.md

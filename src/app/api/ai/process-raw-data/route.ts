@@ -43,22 +43,25 @@ export async function POST(request: Request) {
 
                 ${TITLE_DIVERSITY_RULES}${legalPrecedents}
 
-                CRITICAL: Regardless of what language the raw data below is written in (it may be
-                Indonesian), you MUST write the article in English and respond with EXACTLY these
-                JSON field names in English - never translate/rename them (e.g. never "judul",
-                "artikel", "ringkasan", "isi"). Return ONLY a valid JSON object with this EXACT flat
-                structure - no nested objects, no commentary before or after:
+                LANGUAGE: Write the article in natural, standard Bahasa Indonesia (Bahasa Indonesia
+                baku). EXCEPTION: if the raw data contains a direct quote/statement originally in
+                Bahasa Manado (Manado Malay), reproduce that quote verbatim in Bahasa Manado inside
+                quotation marks and attribute it to the speaker - do NOT rewrite it into baku
+                Indonesian; the narration around it stays baku. Keep the JSON field NAMES below in
+                English exactly as written (never "judul"/"isi"/etc.), but the VALUES must be in
+                Indonesian. Return ONLY a valid JSON object with this EXACT flat structure - no
+                nested objects, no commentary before or after:
                 {
-                    "title": "A captivating, journalistic headline",
+                    "title": "A captivating, journalistic headline (in Indonesian)",
                     "slug": "kebab-case-slug-optimized-for-seo",
-                    "excerpt": "A concise summary (max 160 chars)",
-                    "content": "The full article content in HTML format. Use <p>, <h3> (sparingly), <ul>, <li>. Do not use <h1> or <h2>.",
+                    "excerpt": "A concise summary, max 160 chars (in Indonesian)",
+                    "content": "The full article content in HTML format (in Indonesian). Use <p>, <h3> (sparingly), <ul>, <li>. Do not use <h1> or <h2>.",
                     "category": "One of: TOURISM, INVESTMENT, INCIDENTS, LOCAL, JOBS, OPINION",
                     "riskLevel": "LOW"
                 }
 
                 Tone: Professional, Objective, Informative.
-                Language: English.`
+                Language: Bahasa Indonesia baku (with verbatim Bahasa Manado quotes where present in the source).`
             },
             {
                 // "Raw Data:" (and similar "Source material:"/"Content:"
