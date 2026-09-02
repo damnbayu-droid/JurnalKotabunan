@@ -10,6 +10,19 @@
 // `result` may come back wrapped in a ```json fenced code block even when
 // the prompt asks for raw JSON, so JSON-expecting callers should use
 // myaiCompleteJSON() rather than parsing `result` directly.
+//
+// FALLBACK (added 2026-09-03): when MYAI_API_KEY is not set, or a MyAI OS
+// call fails and free providers ARE configured, every myaiComplete /
+// myaiCompleteJSON call transparently routes through fallback-router.ts
+// (Groq -> OpenRouter -> Z.ai). This lets the large historical-news seed
+// run on free providers before MyAI OS is connected, with no change to any
+// caller or prompt. `field` / `model` are MyAI-OS-only hints and are
+// ignored on the fallback path (the router picks its own model per
+// provider). Set MYAI_API_KEY later and everything reverts to MyAI OS with
+// no code change.
+
+import { fallbackTextComplete, fallbackConfigured, fallbackPing } from './fallback-router'
+import type { OAIMessage } from './providers/openai-compat'
 
 const MYAI_BASE_URL = process.env.MYAI_BASE_URL || 'https://console.myai.nexus/api/v1'
 
@@ -91,7 +104,8 @@ function normalizeResult(result: unknown): string {
 // model directly (confirmed via `provider_used` in the response) and the
 // hijacking stopped. `field` is still required by the gateway even when
 // pinning a model, so this always sends both.
-export async function myaiComplete(field: MyaiField, messages: MyaiMessage[], model?: string): Promise<string> {
+// The actual MyAI OS network call - only reached when MYAI_API_KEY is set.
+async function myaiOsComplete(field: MyaiField, messages: MyaiMessage[], model?: string): Promise<string> {
     const res = await fetch(`${MYAI_BASE_URL}/chat/completions`, {
         method: 'POST',
         headers: {
@@ -112,6 +126,45 @@ export async function myaiComplete(field: MyaiField, messages: MyaiMessage[], mo
 
     const data: MyaiResponse = await res.json()
     return normalizeResult(data.result)
+}
+
+// Single entry point for both myaiComplete and myaiCompleteJSON. Chooses
+// MyAI OS or the free-provider fallback router, and knows whether the
+// caller wants JSON (so the router can ask providers for json_object mode).
+async function runCompletion(
+    field: MyaiField,
+    messages: MyaiMessage[],
+    model: string | undefined,
+    json: boolean,
+): Promise<string> {
+    const hasMyai = !!process.env.MYAI_API_KEY
+
+    if (!hasMyai) {
+        if (!fallbackConfigured()) {
+            throw new Error(
+                'No AI provider configured: set MYAI_API_KEY, or GROQ_API_KEY / OPENROUTER_API_KEY / ZAI_API_KEY for the fallback router.',
+            )
+        }
+        return fallbackTextComplete(messages as OAIMessage[], { json })
+    }
+
+    try {
+        return await myaiOsComplete(field, messages, model)
+    } catch (err) {
+        if (fallbackConfigured()) {
+            console.warn(
+                `[myaiClient] MyAI OS failed, using fallback router: ${(err as Error).message.slice(0, 160)}`,
+            )
+            return fallbackTextComplete(messages as OAIMessage[], { json })
+        }
+        throw err
+    }
+}
+
+// `field` and `model` are honoured only when MyAI OS is the active provider;
+// on the fallback path the router picks its own model (see file header).
+export async function myaiComplete(field: MyaiField, messages: MyaiMessage[], model?: string): Promise<string> {
+    return runCompletion(field, messages, model, false)
 }
 
 // The gateway wraps JSON in ```json fences even when asked for raw JSON,
@@ -150,11 +203,16 @@ function extractJson(raw: string): string {
 }
 
 export async function myaiCompleteJSON<T = any>(field: MyaiField, messages: MyaiMessage[], model?: string): Promise<T> {
-    const raw = await myaiComplete(field, messages, model)
+    const raw = await runCompletion(field, messages, model, true)
     return JSON.parse(extractJson(raw))
 }
 
 export async function myaiPing(): Promise<void> {
+    if (!process.env.MYAI_API_KEY) {
+        // No MyAI OS - report on the fallback router instead so health
+        // checks stay meaningful during the seed.
+        return fallbackPing()
+    }
     const res = await fetch(`${MYAI_BASE_URL}/models`)
     if (!res.ok) throw new Error(`MyAI OS ping failed (${res.status})`)
 }
