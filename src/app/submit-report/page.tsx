@@ -12,12 +12,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Loader2, Send, Shield, AlertTriangle, CheckCircle } from 'lucide-react'
 
 const categories = [
-  { value: 'TOURISM', label: 'Tourism' },
-  { value: 'INVESTMENT', label: 'Investment' },
-  { value: 'INCIDENTS', label: 'Incidents' },
-  { value: 'LOCAL', label: 'Local' },
-  { value: 'JOBS', label: 'Jobs' },
-  { value: 'OPINION', label: 'Opinion' },
+  { value: 'GOVERNMENT', label: 'Pemerintahan' },
+  { value: 'TOURISM', label: 'Pariwisata' },
+  { value: 'INVESTMENT', label: 'Investasi' },
+  { value: 'INCIDENTS', label: 'Insiden' },
+  { value: 'ENVIRONMENT', label: 'Lingkungan Hidup' },
+  { value: 'PANANG', label: 'Panang' },
+  { value: 'INTERNATIONAL', label: 'Internasional' },
+  { value: 'TECHNOLOGY', label: 'Teknologi' },
+  { value: 'OPINION', label: 'Opini' },
 ]
 
 export default function SubmitReportPage() {

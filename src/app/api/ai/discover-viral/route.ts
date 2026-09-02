@@ -76,7 +76,7 @@ CRITICAL: Return ONLY a valid JSON object with this EXACT structure and nothing 
 
         // 3. Generate Image (verified binary, stored locally — stable URL forever)
         const storedImage = await generateAndStoreImage(articleData.title, undefined, {
-            category: category || 'LOCAL',
+            category: category || 'GOVERNMENT',
             excerpt: articleData.excerpt,
             content: articleData.content,
         })
@@ -85,7 +85,7 @@ CRITICAL: Return ONLY a valid JSON object with this EXACT structure and nothing 
         const slug = articleData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + Math.random().toString(36).substring(7)
 
         // Map category if needed
-        const cat = category || "LOCAL" // simplify
+        const cat = category || "GOVERNMENT" // simplify
 
         const newArticle = await db.article.create({
             data: {

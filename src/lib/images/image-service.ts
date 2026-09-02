@@ -123,29 +123,53 @@ const CATEGORY_VISUAL_CONCEPTS: Record<string, string[]> = {
         'news photographer capturing an incident aftermath',
         'community members assisting during a local emergency',
     ],
-    LOCAL: [
-        'traditional Mongondow community ceremony, ceremonial dress',
-        'local market vendors selling fresh produce',
-        'village elders in discussion under a banyan tree',
-        'community gotong-royong (mutual aid) work event',
-        'traditional Mongondow wooden house courtyard scene',
-        'schoolchildren walking through a village lane',
-        'local artisan crafting traditional goods by hand',
-        'rural road lined with coconut palms and farmers',
-        'village hall (balai desa) community gathering',
-        'fishermen preparing boats at a local harbor',
+    ENVIRONMENT: [
+        'muddy river choked with mining sediment cutting through forest',
+        'excavators working an open riverbank pit, turbid water',
+        'aerial view of deforested patches beside intact tropical forest',
+        'a crested black macaque (Yaki) in canopy near a cleared area',
+        'villagers inspecting a collapsed river embankment',
+        'public consultation meeting in a village hall, residents raising hands',
+        'reclaimed land with young replanted seedlings in rows',
+        'a broken rural road washed out by flooding near hills',
+        'close-up of hands panning sediment in a stream',
+        'signboard at a forest boundary, dense jungle behind',
     ],
-    JOBS: [
-        'job fair booth with recruiters and applicants',
-        'vocational training workshop, hands-on instruction',
-        'office interview setting, candidate and interviewer',
-        'hospitality staff training session',
-        'group of young professionals networking',
-        'resume review at a career counseling desk',
-        'tourism industry staff in uniform at a workplace',
-        'construction or trade workers on a job site',
-        'remote worker at a co-working desk',
-        'graduation or certification ceremony for trainees',
+    PANANG: [
+        'traditional small-scale gold miners working a hillside tunnel by hand',
+        'a wooden ore-crushing tromol rig beside a stream',
+        'a hand-dug mine shaft entrance framed by timber supports',
+        'villagers gathered at a land-boundary marker post in the forest',
+        'a protest banner on ancestral land at a mining-area edge',
+        'weathered colonial-era mine tunnel mouth overgrown with vines',
+        'a community meeting under a tarpaulin near the mining hills',
+        'panning for gold flakes in a muddy pan, close-up',
+        'a dirt road into forested mining hills at dawn, mist rising',
+        'elders showing old land documents at a wooden table',
+    ],
+    INTERNATIONAL: [
+        'stacked gold bullion bars under studio lighting',
+        'a financial chart of a rising gold price on a screen',
+        'a trading floor with price boards, motion blur',
+        'close-up of a gold coin held between fingers',
+        'a globe with market ticker overlay, moody lighting',
+        'a small-scale miner weighing gold grains on a pocket scale',
+        'newspaper business page with a gold-price headline',
+        'a bank vault door, heavy and polished',
+        'currency notes and a gram of raw gold side by side',
+        'a world map with commodity flow arrows',
+    ],
+    TECHNOLOGY: [
+        'a modern ore-processing plant with tanks and pipework',
+        'engineers in hard hats reviewing plans at a construction site',
+        'an autoclave / pressure-oxidation vessel in an industrial hall',
+        'a control room with monitoring screens and operators',
+        'power transmission towers marching across green hills',
+        'a technician connecting a new household electricity meter',
+        'a contrast of a hand-built tromol beside modern machinery',
+        'fibre-optic or network cabling being installed along a road',
+        'solar panels on a rural rooftop',
+        'a drone surveying a mine site from above',
     ],
     OPINION: [
         'empty park bench overlooking a coastal town at dusk',
@@ -157,14 +181,14 @@ const CATEGORY_VISUAL_CONCEPTS: Record<string, string[]> = {
         'traditional and modern North Sulawesi architecture juxtaposed in one frame',
         'close-up of a gavel or ballot box, symbolic of policy and decisions',
         'aerial view of the Kotabunan coastline representing the region\'s future',
-        'a lone figure walking along a quiet rice-terrace path, reflective mood',
+        'a lone figure walking a quiet coconut-grove path, reflective mood',
     ],
 }
 
 const categoryVisualIndex = new Map<string, number>()
 
 function nextCategoryVisual(category?: string): string {
-    const concepts = (category && CATEGORY_VISUAL_CONCEPTS[category]) || CATEGORY_VISUAL_CONCEPTS.LOCAL
+    const concepts = (category && CATEGORY_VISUAL_CONCEPTS[category]) || CATEGORY_VISUAL_CONCEPTS.GOVERNMENT
     const key = category || '_default'
     const i = categoryVisualIndex.get(key) || 0
     categoryVisualIndex.set(key, i + 1)

@@ -8,7 +8,7 @@ import type { Category } from '@prisma/client'
 
 export interface RewriteExternalNewsInput {
     url: string
-    /** Defaults to LOCAL if omitted - matches the previous hardcoded behavior for the single-URL admin flow. */
+    /** Defaults to GOVERNMENT if omitted - matches the previous hardcoded behavior for the single-URL admin flow. */
     category?: Category
     /** PUBLISHED sets publishedAt (to `publishedAtOverride` if given, else now); DRAFT always leaves it null. */
     status: 'PUBLISHED' | 'DRAFT'
@@ -34,7 +34,7 @@ export interface RewriteExternalNewsResult {
  */
 export async function rewriteExternalNewsToArticle(input: RewriteExternalNewsInput): Promise<RewriteExternalNewsResult> {
     const { url, status, publishedAtOverride, imagePool, onProgress } = input
-    const category: Category = input.category || 'LOCAL'
+    const category: Category = input.category || 'GOVERNMENT'
 
     // 1. Fetch external content - plain server-side fetch, no browser
     // rendering and no vision model involved. JS-heavy sites that render

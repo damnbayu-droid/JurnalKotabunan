@@ -4,21 +4,25 @@ import { useLang } from '@/lib/use-lang'
 
 const CATEGORY_LABELS = {
   en: {
-    TOURISM: 'Tourism',
     GOVERNMENT: 'Government',
+    TOURISM: 'Tourism',
     INVESTMENT: 'Investment',
     INCIDENTS: 'Incidents',
-    LOCAL: 'Local',
-    JOBS: 'Jobs',
+    ENVIRONMENT: 'Environment',
+    PANANG: 'Panang',
+    INTERNATIONAL: 'International',
+    TECHNOLOGY: 'Technology',
     OPINION: 'Opinion',
   },
   id: {
-    TOURISM: 'Pariwisata',
     GOVERNMENT: 'Pemerintahan',
+    TOURISM: 'Pariwisata',
     INVESTMENT: 'Investasi',
     INCIDENTS: 'Insiden',
-    LOCAL: 'Lokal',
-    JOBS: 'Pekerjaan',
+    ENVIRONMENT: 'Lingkungan Hidup',
+    PANANG: 'Panang',
+    INTERNATIONAL: 'Internasional',
+    TECHNOLOGY: 'Teknologi',
     OPINION: 'Opini',
   },
 } as const

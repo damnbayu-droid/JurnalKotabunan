@@ -25,7 +25,7 @@ interface Schedule {
 // All 7 categories, per explicit request - the old form only offered a
 // generic "Target Articles/Category" number with no way to scope a slot to
 // one specific category at all.
-const CATEGORIES = ['TOURISM', 'GOVERNMENT', 'INVESTMENT', 'INCIDENTS', 'LOCAL', 'JOBS', 'OPINION']
+const CATEGORIES = ['GOVERNMENT', 'TOURISM', 'INVESTMENT', 'INCIDENTS', 'ENVIRONMENT', 'PANANG', 'INTERNATIONAL', 'TECHNOLOGY', 'OPINION']
 const ALL_CATEGORIES_VALUE = '__all__'
 
 export function ScheduleCard() {

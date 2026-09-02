@@ -311,12 +311,15 @@ export function AiControls({ onSuccess, onError, onRefresh }: AiControlsProps) {
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="random">Random Category</SelectItem>
-                                <SelectItem value="TOURISM">Tourism</SelectItem>
-                                <SelectItem value="INVESTMENT">Investment</SelectItem>
-                                <SelectItem value="INCIDENTS">Incidents</SelectItem>
-                                <SelectItem value="LOCAL">Local</SelectItem>
-                                <SelectItem value="JOBS">Jobs</SelectItem>
-                                <SelectItem value="OPINION">Opinion</SelectItem>
+                                <SelectItem value="GOVERNMENT">Pemerintahan</SelectItem>
+                                <SelectItem value="TOURISM">Pariwisata</SelectItem>
+                                <SelectItem value="INVESTMENT">Investasi</SelectItem>
+                                <SelectItem value="INCIDENTS">Insiden</SelectItem>
+                                <SelectItem value="ENVIRONMENT">Lingkungan Hidup</SelectItem>
+                                <SelectItem value="PANANG">Panang</SelectItem>
+                                <SelectItem value="INTERNATIONAL">Internasional</SelectItem>
+                                <SelectItem value="TECHNOLOGY">Teknologi</SelectItem>
+                                <SelectItem value="OPINION">Opini</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>

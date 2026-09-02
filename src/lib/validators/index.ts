@@ -33,7 +33,7 @@ export const articleSchema = z.object({
   // GOVERNMENT was missing here even though the admin category dropdown and
   // every AI generator already offer/produce it - selecting it in the
   // Create Article form silently failed this validation.
-  category: z.enum(['TOURISM', 'GOVERNMENT', 'INVESTMENT', 'INCIDENTS', 'LOCAL', 'JOBS', 'OPINION']),
+  category: z.enum(['GOVERNMENT', 'TOURISM', 'INVESTMENT', 'INCIDENTS', 'ENVIRONMENT', 'PANANG', 'INTERNATIONAL', 'TECHNOLOGY', 'OPINION']),
   // Accepts either a full external URL or a local upload path (starts with
   // "/", e.g. "/uploads/articles/foo.webp" from the upload button) - a plain
   // .url() check rejects relative paths, which is exactly what local

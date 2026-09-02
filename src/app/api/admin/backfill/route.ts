@@ -47,9 +47,9 @@ export async function POST(req: NextRequest) {
         const templates = [
             { title: "Tourism Boom in Kotabunan", category: "TOURISM" },
             { title: "New Investment Opportunities", category: "INVESTMENT" },
-            { title: "Local Market Updates", category: "LOCAL" },
+            { title: "Perkembangan Pasar Lokal", category: "GOVERNMENT" },
             { title: "Traffic Incident Report", category: "INCIDENTS" },
-            { title: "Job Market Analaysis", category: "JOBS" },
+            { title: "Analisis Ketenagakerjaan", category: "INVESTMENT" },
             { title: "Community Opinion", category: "OPINION" }
         ]
 

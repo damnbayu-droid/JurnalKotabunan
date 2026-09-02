@@ -56,7 +56,7 @@ export async function POST(request: Request) {
                     "slug": "kebab-case-slug-optimized-for-seo",
                     "excerpt": "A concise summary, max 160 chars (in Indonesian)",
                     "content": "The full article content in HTML format (in Indonesian). Use <p>, <h3> (sparingly), <ul>, <li>. Do not use <h1> or <h2>.",
-                    "category": "One of: TOURISM, INVESTMENT, INCIDENTS, LOCAL, JOBS, OPINION",
+                    "category": "One of: GOVERNMENT, TOURISM, INVESTMENT, INCIDENTS, ENVIRONMENT, PANANG, INTERNATIONAL, TECHNOLOGY, OPINION",
                     "riskLevel": "LOW"
                 }
 

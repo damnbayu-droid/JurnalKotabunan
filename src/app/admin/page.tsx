@@ -153,12 +153,14 @@ const NAV_GROUPS: { label: string; items: NavItem[] }[] = [
 const NAV_ITEMS: NavItem[] = NAV_GROUPS.flatMap((g) => g.items)
 
 const categories = [
+  { value: 'GOVERNMENT', label: 'Pemerintahan' },
   { value: 'TOURISM', label: 'Pariwisata' },
-  { value: 'GOVERNMENT', label: 'Pemerintah' },
   { value: 'INVESTMENT', label: 'Investasi' },
   { value: 'INCIDENTS', label: 'Insiden' },
-  { value: 'LOCAL', label: 'Lokal' },
-  { value: 'JOBS', label: 'Pekerjaan' },
+  { value: 'ENVIRONMENT', label: 'Lingkungan Hidup' },
+  { value: 'PANANG', label: 'Panang' },
+  { value: 'INTERNATIONAL', label: 'Internasional' },
+  { value: 'TECHNOLOGY', label: 'Teknologi' },
   { value: 'OPINION', label: 'Opini' },
 ]
 

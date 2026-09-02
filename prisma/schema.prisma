@@ -21,12 +21,14 @@ enum Role {
 
 // Article Categories
 enum Category {
-  TOURISM
   GOVERNMENT
+  TOURISM
   INVESTMENT
   INCIDENTS
-  LOCAL
-  JOBS
+  ENVIRONMENT
+  PANANG
+  INTERNATIONAL
+  TECHNOLOGY
   OPINION
 }
 

@@ -315,7 +315,7 @@ export async function POST(req: NextRequest) {
             }
 
             // 2. Iterate ALL Categories (Requested: "All Field will create 2 Article / News Everyday")
-            const categories = ['TOURISM', 'GOVERNMENT', 'INVESTMENT', 'INCIDENTS', 'LOCAL', 'JOBS', 'OPINION']
+            const categories = ['GOVERNMENT', 'TOURISM', 'INVESTMENT', 'INCIDENTS', 'ENVIRONMENT', 'PANANG', 'INTERNATIONAL', 'TECHNOLOGY', 'OPINION']
             const { generateNewsArticles } = await import('@/lib/ai/news-generator')
 
             for (const cat of categories) {

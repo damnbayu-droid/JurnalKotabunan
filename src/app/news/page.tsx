@@ -24,13 +24,15 @@ export const metadata = {
 const PAGE_SIZE = 20
 
 const CATEGORIES: { value: string; label: string }[] = [
-  { value: 'TOURISM', label: 'Tourism' },
-  { value: 'GOVERNMENT', label: 'Government' },
-  { value: 'INVESTMENT', label: 'Investment' },
-  { value: 'INCIDENTS', label: 'Incidents' },
-  { value: 'LOCAL', label: 'Local' },
-  { value: 'JOBS', label: 'Jobs' },
-  { value: 'OPINION', label: 'Opinion' },
+  { value: 'GOVERNMENT', label: 'Pemerintahan' },
+  { value: 'TOURISM', label: 'Pariwisata' },
+  { value: 'INVESTMENT', label: 'Investasi' },
+  { value: 'INCIDENTS', label: 'Insiden' },
+  { value: 'ENVIRONMENT', label: 'Lingkungan Hidup' },
+  { value: 'PANANG', label: 'Panang' },
+  { value: 'INTERNATIONAL', label: 'Internasional' },
+  { value: 'TECHNOLOGY', label: 'Teknologi' },
+  { value: 'OPINION', label: 'Opini' },
 ]
 
 interface NewsPageProps {

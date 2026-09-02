@@ -88,7 +88,7 @@ CRITICAL: Do your identification/reasoning step silently. Do NOT write it out. Y
             },
             {
                 role: 'user',
-                content: `Category: ${input.category || 'LOCAL'}\nHeadline: ${input.title}\nSummary: ${input.excerpt || ''}\nBody excerpt: ${snippet}`,
+                content: `Category: ${input.category || 'GOVERNMENT'}\nHeadline: ${input.title}\nSummary: ${input.excerpt || ''}\nBody excerpt: ${snippet}`,
             },
         ], 'gpt-4o-mini')
 

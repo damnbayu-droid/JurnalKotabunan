@@ -16,17 +16,22 @@ interface GeneratedArticle {
     evidenceCount: number
 }
 
-const CATEGORIES: Category[] = ['TOURISM', 'GOVERNMENT', 'INVESTMENT', 'INCIDENTS', 'LOCAL', 'JOBS', 'OPINION']
+const CATEGORIES: Category[] = ['GOVERNMENT', 'TOURISM', 'INVESTMENT', 'INCIDENTS', 'ENVIRONMENT', 'PANANG', 'INTERNATIONAL', 'TECHNOLOGY', 'OPINION']
 
-// Weighted category distribution
+// Weighted category distribution. Panang and Environment are the beats
+// that define this outlet, but they're sensitive/investigative and not an
+// every-day occurrence, so they sit mid-weight; Government and Investment
+// carry the routine daily volume.
 const CATEGORY_WEIGHTS = {
-    TOURISM: 25,
-    GOVERNMENT: 20,
-    INVESTMENT: 15,
-    LOCAL: 15,
-    JOBS: 10,
-    INCIDENTS: 10,
-    OPINION: 5,
+    GOVERNMENT: 22,
+    INVESTMENT: 16,
+    INCIDENTS: 14,
+    TOURISM: 12,
+    ENVIRONMENT: 12,
+    PANANG: 10,
+    TECHNOLOGY: 6,
+    INTERNATIONAL: 5,
+    OPINION: 3,
 }
 
 function selectRandomCategory(): Category {
@@ -40,7 +45,7 @@ function selectRandomCategory(): Category {
         }
     }
 
-    return 'TOURISM' // fallback
+    return 'GOVERNMENT' // fallback
 }
 
 function generateSlug(title: string): string {
@@ -97,13 +102,15 @@ export function findSimilarTitle(candidate: string, existingTitles: string[]): s
 }
 
 const CATEGORY_GUIDELINES = {
-    TOURISM: 'tourism industry, hotels, festivals, cultural attractions, visitor experiences',
-    GOVERNMENT: 'Bolaang Mongondow Timur regency and North Sulawesi provincial government policies, Bupati and Governor statements, regulations, public services, key Jakarta updates affecting the region',
-    INVESTMENT: 'business investments, startups, funding rounds, economic development, venture capital',
-    INCIDENTS: 'accidents, natural disasters, emergencies, safety alerts, volcanic activity',
-    LOCAL: 'community initiatives, local government programs, cultural preservation, infrastructure',
-    JOBS: 'employment opportunities, job fairs, training programs, career development',
-    OPINION: 'expert commentary, cultural analysis, social issues, policy discussions',
+    GOVERNMENT: 'Bolaang Mongondow Timur regency and North Sulawesi provincial government policies, Bupati/Wabup and DPRD statements, regulations, budgets (APBD/RPJMD), public services, official appointments, elections',
+    TOURISM: 'festivals and cultural events, local attractions, MSMEs and creative economy, anniversary/HUT events',
+    INVESTMENT: 'mining and energy investment (the Doup gold mine / PT ASA / UNTR-Astra), the Kotabunan port, land compensation, regional economic development, MoUs',
+    INCIDENTS: 'earthquakes, floods and landslides, road accidents, fires, other emergencies and safety alerts in Boltim',
+    ENVIRONMENT: 'land and river damage from mining (legal and illegal / PETI), post-mining plans, AMDAL processes, conservation (e.g. Yaki / Macaca nigra), pollution disputes - attribute every allegation to its source, never state as fact',
+    PANANG: 'the Panang/Doup mining area: customary land claims, the ex-Kobondian HGU dispute, mining history, PT ASA operations and community relations, rakyat (small-scale) mining. Highly sensitive: every accusation is an attributed claim ("diduga", "menurut", "mengklaim"), never settled fact',
+    INTERNATIONAL: 'world gold price movements and global economic developments relevant to small-scale miners and the Doup mine',
+    TECHNOLOGY: 'mineral-processing technology (POX/CIL/flotation vs traditional guang/dulang/tromol), electricity and energy infrastructure, digital services',
+    OPINION: 'direct statements from residents captured from public social-media posts, with the original post linked as the source - not editorial op-eds',
 }
 
 async function generateArticleContent(category: Category, avoidTitles: string[] = []): Promise<GeneratedArticle> {

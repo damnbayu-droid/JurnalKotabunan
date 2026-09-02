@@ -24,13 +24,15 @@ interface ArticleCardProps {
 }
 
 const categoryLabels: Record<string, string> = {
-  TOURISM: 'Tourism',
-  GOVERNMENT: 'Government',
-  INVESTMENT: 'Investment',
-  INCIDENTS: 'Incidents',
-  LOCAL: 'Local',
-  JOBS: 'Jobs',
-  OPINION: 'Opinion',
+  GOVERNMENT: 'Pemerintahan',
+  TOURISM: 'Pariwisata',
+  INVESTMENT: 'Investasi',
+  INCIDENTS: 'Insiden',
+  ENVIRONMENT: 'Lingkungan Hidup',
+  PANANG: 'Panang',
+  INTERNATIONAL: 'Internasional',
+  TECHNOLOGY: 'Teknologi',
+  OPINION: 'Opini',
 }
 
 export function ArticleCard({ article, variant = 'default' }: ArticleCardProps) {

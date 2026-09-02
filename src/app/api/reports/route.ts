@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     const report = await db.report.create({
       data: {
         title,
-        category: category || 'LOCAL',
+        category: category || 'GOVERNMENT',
         content,
         sourceContact,
         evidenceLinks: evidenceLinks ? JSON.stringify(evidenceLinks) : null, // Store as JSON string

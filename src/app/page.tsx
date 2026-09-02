@@ -90,8 +90,8 @@ export default async function HomePage() {
     tourismArticles,
     investmentArticles,
     incidentArticles,
-    localArticles,
-    jobsArticles,
+    environmentArticles,
+    panangArticles,
     opinionArticles,
     heroLeftAd,
     popularArticles,
@@ -101,8 +101,8 @@ export default async function HomePage() {
     getArticlesByCategory('TOURISM'),
     getArticlesByCategory('INVESTMENT'),
     getArticlesByCategory('INCIDENTS'),
-    getArticlesByCategory('LOCAL'),
-    getArticlesByCategory('JOBS'),
+    getArticlesByCategory('ENVIRONMENT'),
+    getArticlesByCategory('PANANG'),
     getArticlesByCategory('OPINION'),
     getActiveAd('HOME_HERO_LEFT', 'DESKTOP'),
     getPopularArticlesForHome(),
@@ -351,23 +351,23 @@ export default async function HomePage() {
           />
         )}
 
-        {/* Local Section */}
-        {localArticles.length > 0 && (
+        {/* Environment Section */}
+        {environmentArticles.length > 0 && (
           <CategorySection
-            title="Local News & Community"
-            category="LOCAL"
-            articles={localArticles}
-            viewAllHref="/category/local"
+            title="Lingkungan Hidup"
+            category="ENVIRONMENT"
+            articles={environmentArticles}
+            viewAllHref="/category/environment"
           />
         )}
 
-        {/* Jobs Section */}
-        {jobsArticles.length > 0 && (
+        {/* Panang Section */}
+        {panangArticles.length > 0 && (
           <CategorySection
-            title="Jobs & Career"
-            category="JOBS"
-            articles={jobsArticles}
-            viewAllHref="/category/jobs"
+            title="Panang"
+            category="PANANG"
+            articles={panangArticles}
+            viewAllHref="/category/panang"
           />
         )}
 
@@ -427,11 +427,13 @@ export default async function HomePage() {
 }
 
 const categoryLabels: Record<string, string> = {
-  TOURISM: 'Tourism',
-  GOVERNMENT: 'Government',
-  INVESTMENT: 'Investment',
-  INCIDENTS: 'Incidents',
-  LOCAL: 'Local',
-  JOBS: 'Jobs',
-  OPINION: 'Opinion',
+  GOVERNMENT: 'Pemerintahan',
+  TOURISM: 'Pariwisata',
+  INVESTMENT: 'Investasi',
+  INCIDENTS: 'Insiden',
+  ENVIRONMENT: 'Lingkungan Hidup',
+  PANANG: 'Panang',
+  INTERNATIONAL: 'Internasional',
+  TECHNOLOGY: 'Teknologi',
+  OPINION: 'Opini',
 }

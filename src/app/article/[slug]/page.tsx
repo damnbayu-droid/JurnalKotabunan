@@ -64,7 +64,7 @@ async function incrementViewCount(articleId: string) {
   })
 }
 
-const ALL_CATEGORIES: Category[] = ['TOURISM', 'GOVERNMENT', 'INVESTMENT', 'INCIDENTS', 'LOCAL', 'JOBS', 'OPINION']
+const ALL_CATEGORIES: Category[] = ['GOVERNMENT', 'TOURISM', 'INVESTMENT', 'INCIDENTS', 'ENVIRONMENT', 'PANANG', 'INTERNATIONAL', 'TECHNOLOGY', 'OPINION']
 
 /**
  * Like real newsrooms do: below the article, one backlink per OTHER

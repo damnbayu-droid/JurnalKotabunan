@@ -10,33 +10,39 @@ interface CategoryPageProps {
 }
 
 const validCategories: Record<string, string> = {
-  tourism: 'TOURISM',
   government: 'GOVERNMENT',
+  tourism: 'TOURISM',
   investment: 'INVESTMENT',
   incidents: 'INCIDENTS',
-  local: 'LOCAL',
-  jobs: 'JOBS',
+  environment: 'ENVIRONMENT',
+  panang: 'PANANG',
+  international: 'INTERNATIONAL',
+  technology: 'TECHNOLOGY',
   opinion: 'OPINION',
 }
 
 const categoryLabels: Record<string, string> = {
-  TOURISM: 'Tourism',
-  GOVERNMENT: 'Government',
-  INVESTMENT: 'Investment',
-  INCIDENTS: 'Incidents',
-  LOCAL: 'Local',
-  JOBS: 'Jobs',
-  OPINION: 'Opinion',
+  GOVERNMENT: 'Pemerintahan',
+  TOURISM: 'Pariwisata',
+  INVESTMENT: 'Investasi',
+  INCIDENTS: 'Insiden',
+  ENVIRONMENT: 'Lingkungan Hidup',
+  PANANG: 'Panang',
+  INTERNATIONAL: 'Internasional',
+  TECHNOLOGY: 'Teknologi',
+  OPINION: 'Opini',
 }
 
 const categoryDescriptions: Record<string, string> = {
-  TOURISM: 'News and investigations about the Kotabunan and North Sulawesi tourism industry',
-  GOVERNMENT: 'Bolaang Mongondow Timur regency and North Sulawesi provincial government policies, Bupati and Governor statements, regulations, public services, key Jakarta updates affecting the region',
-  INVESTMENT: 'Analysis and reports about investment in Kotabunan and Bolaang Mongondow Timur',
-  INCIDENTS: 'Reports of incidents and important events in Kotabunan and Bolaang Mongondow Timur',
-  LOCAL: 'Local news and community stories across Kotabunan',
-  JOBS: 'Job information and the North Sulawesi labor market',
-  OPINION: 'Opinions and analysis from our contributors',
+  GOVERNMENT: 'Kebijakan Pemkab Bolaang Mongondow Timur dan Pemprov Sulawesi Utara, pernyataan Bupati dan Gubernur, regulasi, pelayanan publik, serta perkembangan dari Jakarta yang berdampak ke daerah.',
+  TOURISM: 'Berita dan investigasi seputar pariwisata Kotabunan dan Sulawesi Utara.',
+  INVESTMENT: 'Analisis dan laporan tentang investasi di Kotabunan dan Bolaang Mongondow Timur.',
+  INCIDENTS: 'Laporan insiden dan peristiwa penting di Kotabunan dan Bolaang Mongondow Timur.',
+  ENVIRONMENT: 'Kerusakan lahan dan lingkungan, konservasi, serta dampak korporasi terhadap lingkungan Kotabunan.',
+  PANANG: 'Liputan kawasan tambang Panang: hak atas tanah (HGU), sejarah pertambangan, dinamika pemerintah-warga, dan masyarakat Panang. Setiap tudingan ditulis sebagai klaim beratribusi, bukan fakta final.',
+  INTERNATIONAL: 'Perkembangan internasional yang relevan bagi Kotabunan, terutama harga emas dunia dan ekonomi penambang rakyat.',
+  TECHNOLOGY: 'Teknologi pengolahan tambang, infrastruktur energi dan digital, serta inovasi di Bolaang Mongondow Timur.',
+  OPINION: 'Suara warga: pernyataan langsung masyarakat yang dikutip dari unggahan media sosial publik, dengan tautan ke unggahan aslinya.',
 }
 
 export async function generateStaticParams() {
