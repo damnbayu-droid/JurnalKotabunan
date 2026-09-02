@@ -184,10 +184,23 @@ const CATEGORY_ID: Record<Category, string> = {
     INTERNATIONAL: 'Internasional', TECHNOLOGY: 'Teknologi', OPINION: 'Opini',
 }
 
+const GLOSSARY = `GLOSARIUM (pakai nama lengkap ini, JANGAN menebak kepanjangan lain):
+- PT ASA = PT Arafura Surya Alam (pemegang IUP tambang emas Blok Doup, Kotabunan).
+- Boltim = Kabupaten Bolaang Mongondow Timur. Bolmong = Kabupaten Bolaang Mongondow (kabupaten berbeda).
+- UNTR = PT United Tractors Tbk (Grup Astra). PSAB / J Resources = PT J Resources Asia Pasifik Tbk.
+- Doup / Blok Doup = blok tambang emas di kawasan Panang-Benteng, Kecamatan Kotabunan.
+- eks-HGU Kobondian (ejaan lain: Kobandian/Kebondian) = bekas Hak Guna Usaha ~100 ha di Kotabunan yang jadi sengketa lahan.
+- WPR = Wilayah Pertambangan Rakyat. PETI = Penambangan Tanpa Izin. AMDAL = Analisis Mengenai Dampak Lingkungan.
+- Bupati Boltim 2025-2030: Oskar Manoppo (Wabup: Argo Sumaiku). Bupati sebelumnya (2020-2025): Sam Sachrul Mamonto.
+- WALHI = Wahana Lingkungan Hidup Indonesia. LAKRI, GMPK, AMTI, MDT = organisasi/gerakan masyarakat sipil.
+Jika sebuah singkatan tidak ada di daftar ini dan tidak dijelaskan di bahan riset, tulis singkatannya apa adanya tanpa menebak kepanjangannya.`
+
 function buildPrompt(e: Entry): string {
     const dateStr = e.date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Makassar' })
     const sensitive = e.category === 'PANANG' || e.category === 'ENVIRONMENT'
     return `Kamu jurnalis senior Jurnal Kotabunan (jurnal.kotabunan.com), media berita Kecamatan Kotabunan & Kabupaten Bolaang Mongondow Timur (Boltim), Sulawesi Utara.
+
+${GLOSSARY}
 
 Tulis SATU artikel berita berbahasa Indonesia baku berdasarkan bahan riset terverifikasi di bawah. Ini bukan opini; ini berita hard-news / feature berdasarkan fakta yang sudah dikumpulkan tim riset.
 
