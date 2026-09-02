@@ -9,7 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { AdSlot, AdMedia, getActiveAd } from '@/components/ads/ad-slot'
 import { PopularNewsCarousel } from '@/components/home/popular-news-carousel'
-import { BALI_TZ } from '@/lib/date'
+import { SITE_TZ } from '@/lib/date'
 
 export const revalidate = 60 // ISR: 60 seconds
 
@@ -208,7 +208,7 @@ export default async function HomePage() {
                             day: 'numeric',
                             month: 'long',
                             year: 'numeric',
-                            timeZone: BALI_TZ,
+                            timeZone: SITE_TZ,
                           })}
                         </span>
                       </div>
@@ -281,7 +281,7 @@ export default async function HomePage() {
                             {categoryLabels[article.category]}
                           </Badge>
                           <p className="text-[10px] text-muted-foreground">
-                            {article.publishedAt?.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: BALI_TZ })}
+                            {article.publishedAt?.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: SITE_TZ })}
                           </p>
                         </div>
                       </div>

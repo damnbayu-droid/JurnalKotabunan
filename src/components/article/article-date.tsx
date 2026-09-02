@@ -1,7 +1,7 @@
 'use client'
 
 import { useLang } from '@/lib/use-lang'
-import { BALI_TZ } from '@/lib/date'
+import { SITE_TZ } from '@/lib/date'
 
 /**
  * Formats a date in the reader's chosen language (was hardcoded to id-ID
@@ -20,7 +20,7 @@ export function ArticleDate({ date }: { date: Date | string | null | undefined }
         day: 'numeric',
         month: 'long',
         year: 'numeric',
-        timeZone: BALI_TZ,
+        timeZone: SITE_TZ,
       })}
     </>
   )
