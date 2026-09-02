@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import { LEGAL_PAGES_LAST_UPDATED } from '@/lib/site-config'
 
 export const metadata: Metadata = {
-    title: 'Editorial Guidelines - Bali Journal',
-    description: 'Editorial Guidelines and Ethics for Bali Journal.',
+    title: 'Editorial Guidelines - Jurnal Kotabunan',
+    description: 'Editorial Guidelines and Ethics for Jurnal Kotabunan.',
     alternates: {
         canonical: '/editorial-guidelines',
     },
@@ -19,7 +19,7 @@ export default function EditorialGuidelinesPage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
                     <p>
-                        Bali Journal is dedicated to high-quality, independent journalism. These guidelines outline the principles that guide our reporting and editing.
+                        Jurnal Kotabunan is dedicated to high-quality, independent journalism. These guidelines outline the principles that guide our reporting and editing.
                     </p>
                 </section>
 

@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/pagination'
 
 export const metadata = {
-  title: 'All News - Bali Journal',
-  description: 'Browse every published article on Bali Journal, filterable by category.',
+  title: 'All News - Jurnal Kotabunan',
+  description: 'Browse every published article on Jurnal Kotabunan, filterable by category.',
   alternates: {
     canonical: '/news',
   },
@@ -62,7 +62,7 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
     <div className="container mx-auto max-w-7xl px-4 py-10">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">All News</h1>
-        <p className="mt-2 text-muted-foreground">{total} article{total === 1 ? '' : 's'} published on Bali Journal.</p>
+        <p className="mt-2 text-muted-foreground">{total} article{total === 1 ? '' : 's'} published on Jurnal Kotabunan.</p>
       </div>
 
       {/* Category filter */}

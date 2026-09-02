@@ -4,7 +4,8 @@ import { SITE_URL, SITE_NAME } from '@/lib/site-config'
 // Powers the Admin Dashboard Email panel (replies to Contact Form
 // submissions). No Gmail/SMTP credentials involved anywhere in this path -
 // Resend sends independently via its own API key against a domain verified
-// directly with Resend (balijournal.com, confirmed verified 2026-09-02).
+// directly with Resend (jurnal.kotabunan.com - verify the domain in Resend
+// before sends will succeed).
 
 let client: Resend | null = null
 function getClient(): Resend {
@@ -33,7 +34,7 @@ function escapeHtml(value: string): string {
  * styles throughout, not flexbox/grid or a <style> block, because email
  * clients (Outlook in particular) have very inconsistent CSS support and
  * table+inline-style is the one layout approach that reliably renders the
- * same everywhere. Logo has an alt fallback ("BALI JOURNAL" text) for
+ * same everywhere. Logo has an alt fallback (site name text) for
  * clients that block images by default (most webmail, until the recipient
  * clicks "show images") - the header still identifies the sender even then.
  */
@@ -98,8 +99,8 @@ export interface SendReplyInput {
 }
 
 export async function sendContactReply({ to, subject, message, originalMessage, originalSubject }: SendReplyInput): Promise<void> {
-    const fromName = process.env.RESEND_FROM_NAME || 'Bali Journal'
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'contact@balijournal.com'
+    const fromName = process.env.RESEND_FROM_NAME || 'Jurnal Kotabunan'
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'info@jurnal.kotabunan.com'
 
     const bodyHtml = escapeHtml(message).replace(/\n/g, '<br />')
     const quotedHtml = originalMessage

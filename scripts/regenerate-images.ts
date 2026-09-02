@@ -1,9 +1,9 @@
 /**
- * NewsBali — Featured Image Regenerator
+ * Jurnal Kotabunan — Featured Image Regenerator
  *
  * Masalah: banyak artikel published punya gambar DOUBLE (URL/file identik),
  * MIRIP (secara visual, walau file-nya beda) atau TIDAK SESUAI konten berita
- * (prompt generik "bali,news").
+ * (prompt generik "kotabunan,news").
  *
  * Solusi: audit SEMUA gambar published memakai 2 lapis deteksi -
  *   1) SHA1 exact-match (file benar-benar identik)
@@ -124,7 +124,7 @@ function classify(url: string | null): AuditRow['kind'] {
 
 async function main() {
   console.log('='.repeat(72))
-  console.log(`🖼️  NewsBali Image Regenerator — mode: ${RUN_MODE ? 'REGENERATE 🛠️' : 'AUDIT ONLY 🔍'}`)
+  console.log(`🖼️  Jurnal Kotabunan Image Regenerator — mode: ${RUN_MODE ? 'REGENERATE 🛠️' : 'AUDIT ONLY 🔍'}`)
   console.log('='.repeat(72))
 
   const articles = await db.article.findMany({

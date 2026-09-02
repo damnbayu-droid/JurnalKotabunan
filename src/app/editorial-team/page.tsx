@@ -5,8 +5,8 @@ import { db } from '@/lib/db'
 import { COMPANY_NAME } from '@/lib/site-config'
 
 export const metadata = {
-  title: 'Editorial Team - Bali Journal',
-  description: 'The editorial team behind Bali Journal.',
+  title: 'Editorial Team - Jurnal Kotabunan',
+  description: 'The editorial team behind Jurnal Kotabunan.',
   alternates: {
     canonical: '/editorial-team',
   },
@@ -26,8 +26,8 @@ export default async function EditorialTeamPage() {
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold mb-4">Editorial Team</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Bali Journal is published by {COMPANY_NAME}. Our editorial team is responsible for every
-            article published under the Bali Journal name.
+            Jurnal Kotabunan is published by {COMPANY_NAME}. Our editorial team is responsible for every
+            article published under the Jurnal Kotabunan name.
           </p>
         </div>
 

@@ -14,7 +14,7 @@ async function testUrl(name: string, url: string) {
 }
 
 async function main() {
-    await testUrl('LoremFlickr', 'https://loremflickr.com/800/600/bali,news')
+    await testUrl('LoremFlickr', 'https://loremflickr.com/800/600/kotabunan,news')
     await testUrl('Picsum', 'https://picsum.photos/800/600')
 }
 

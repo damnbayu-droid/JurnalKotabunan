@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
             const draftCount = await db.article.count({ where: { status: 'DRAFT', aiAssisted: true } })
 
             if (draftCount < 3) {
-                logs.push('[WUE]: Found viral topic "Bali Sustainable Tourism Limit". Drafting...')
+                logs.push('[WUE]: Found viral topic "Kotabunan Sustainable Tourism Limit". Drafting...')
                 // Trigger generation logic (simplified call here, ideally reuse lib function)
                 // For now we simulate generation or rely on the `generate-news` endpoint logic if imported
                 // Let's assume we proceed to review existing DRAFTS
@@ -190,7 +190,7 @@ export async function POST(req: NextRequest) {
 
                         const stored = await generateAndStoreImage(
                             article.title,
-                            `${promptHint} of ${article.title.substring(0, 40)}, bali news`
+                            `${promptHint} of ${article.title.substring(0, 40)}, kotabunan news`
                         )
 
                         if (stored.localPath) {
@@ -360,7 +360,7 @@ export async function POST(req: NextRequest) {
 
             // Dynamic Context Injection
             const now = new Date()
-            const timeContext = `Current Time: ${now.toLocaleTimeString('en-US', { timeZone: 'Asia/Makassar' })} (Bali Time). Date: ${now.toDateString()}.`
+            const timeContext = `Current Time: ${now.toLocaleTimeString('en-US', { timeZone: 'Asia/Makassar' })} (WITA). Date: ${now.toDateString()}.`
 
             let response = "I'm not sure how to do that yet."
             let agent = "System"

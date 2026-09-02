@@ -14,8 +14,8 @@ interface ArticleActionsProps {
   initialLikeCount: number
 }
 
-const BOOKMARKS_KEY = 'newsbali_bookmarks'
-const LIKES_KEY = 'newsbali_likes'
+const BOOKMARKS_KEY = 'jurnalkotabunan_bookmarks'
+const LIKES_KEY = 'jurnalkotabunan_likes'
 
 const translations = {
   en: {

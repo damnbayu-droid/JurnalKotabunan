@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 
         // Dummy Content Templates
         const templates = [
-            { title: "Tourism Boom in Bali", category: "TOURISM" },
+            { title: "Tourism Boom in Kotabunan", category: "TOURISM" },
             { title: "New Investment Opportunities", category: "INVESTMENT" },
             { title: "Local Market Updates", category: "LOCAL" },
             { title: "Traffic Incident Report", category: "INCIDENTS" },
@@ -87,11 +87,11 @@ export async function POST(req: NextRequest) {
                         viewCount: viewCount,
                         featuredImageUrl: `https://placehold.co/600x400?text=${t.category}+Archive`, // Placeholder for backfill
                         featuredImageAlt: "Archived News",
-                        imageSource: "Bali Journal Archive",
+                        imageSource: "Jurnal Kotabunan Archive",
                         author: {
                             connectOrCreate: {
-                                where: { email: 'archive@balijournal.com' },
-                                create: { email: 'archive@balijournal.com', name: 'System Archive', role: 'ADMIN' }
+                                where: { email: 'archive@jurnal.kotabunan.com' },
+                                create: { email: 'archive@jurnal.kotabunan.com', name: 'System Archive', role: 'ADMIN' }
                             }
                         }
                     }

@@ -1,10 +1,10 @@
 /**
- * NewsBali — Article Content Upgrade Pass
+ * Jurnal Kotabunan — Article Content Upgrade Pass
  *
  * The whole PUBLISHED backlog is well under the site's own stated standard
  * (avg ~294 words, longest only 491, vs. the "800-1200 word, AP-style"
  * spec) and a chunk of it still carries generic report-template headings
- * ("The Key Players", "NewsBali Analysis", "Chronology & Activities", ...)
+ * ("The Key Players", "Jurnal Kotabunan Analysis", "Chronology & Activities", ...)
  * that never got caught by the earlier exact-7-label scaffold cleanup.
  *
  * This does a full rewrite pass per article: same title/category/slug (so
@@ -35,7 +35,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 async function main() {
   console.log('='.repeat(72))
-  console.log(`📰 NewsBali Article Content Upgrade — mode: ${RUN_MODE ? 'UPGRADE 🛠️' : 'AUDIT ONLY 🔍'}`)
+  console.log(`📰 Jurnal Kotabunan Article Content Upgrade — mode: ${RUN_MODE ? 'UPGRADE 🛠️' : 'AUDIT ONLY 🔍'}`)
   console.log('='.repeat(72))
 
   const articles = await db.article.findMany({
@@ -70,7 +70,7 @@ async function main() {
     console.log(`▶ [${i + 1}/${articles.length}] (${before}w) "${a.title.slice(0, 55)}"`)
 
     try {
-      const prompt = `You are a senior editor at NewsBali rewriting a thin, underdeveloped draft into a full professional news article.
+      const prompt = `You are a senior editor at Jurnal Kotabunan rewriting a thin, underdeveloped draft into a full professional news article.
 
 Title (KEEP EXACTLY AS-IS - do not change it): ${a.title}
 Category: ${a.category}

@@ -113,7 +113,7 @@ export function ScheduleCard() {
                             Smart Schedule (Editable)
                         </CardTitle>
                         <CardDescription>
-                            Setiap slot dijalankan otomatis oleh cron (tiap 10 menit, WITA/Bali time) tepat di jam yang diatur.
+                            Setiap slot dijalankan otomatis oleh cron (tiap 10 menit, WITA) tepat di jam yang diatur.
                         </CardDescription>
                     </div>
                 </div>
@@ -192,7 +192,7 @@ export function ScheduleCard() {
                             </DialogHeader>
                             <div className="space-y-4 py-4">
                                 <div className="grid gap-2">
-                                    <Label>Waktu (24h, WITA/Bali time)</Label>
+                                    <Label>Waktu (24h, WITA)</Label>
                                     <Input
                                         type="time"
                                         value={formData.time}

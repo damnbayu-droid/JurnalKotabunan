@@ -75,11 +75,11 @@ export default function ContactPage() {
                         <CardContent className="space-y-2 text-sm">
                             <div>
                                 <span className="font-semibold block">Advertising Inquiries:</span>
-                                <a href="mailto:contact@balijournal.com" className="text-blue-600 hover:underline">contact@balijournal.com</a>
+                                <a href="mailto:contact@jurnal.kotabunan.com" className="text-blue-600 hover:underline">contact@jurnal.kotabunan.com</a>
                             </div>
                             <div>
                                 <span className="font-semibold block">General Info & Tips:</span>
-                                <a href="mailto:info@balijournal.com" className="text-blue-600 hover:underline">info@balijournal.com</a>
+                                <a href="mailto:info@jurnal.kotabunan.com" className="text-blue-600 hover:underline">info@jurnal.kotabunan.com</a>
                             </div>
                         </CardContent>
                     </Card>

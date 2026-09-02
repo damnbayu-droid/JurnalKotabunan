@@ -2,7 +2,7 @@ import { db } from '@/lib/db'
 import { CheckCircle, XCircle } from 'lucide-react'
 
 export const metadata = {
-    title: 'Unsubscribe - Bali Journal',
+    title: 'Unsubscribe - Jurnal Kotabunan',
     robots: { index: false, follow: false },
 }
 
@@ -31,7 +31,7 @@ export default async function UnsubscribePage({ searchParams }: UnsubscribePageP
                     <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
                     <h1 className="text-2xl font-bold mb-2">Berhasil Berhenti Berlangganan</h1>
                     <p className="text-muted-foreground">
-                        Kamu tidak akan lagi menerima email berita baru dari Bali Journal. Kamu bisa berlangganan lagi kapan saja lewat footer situs.
+                        Kamu tidak akan lagi menerima email berita baru dari Jurnal Kotabunan. Kamu bisa berlangganan lagi kapan saja lewat footer situs.
                     </p>
                 </>
             )}

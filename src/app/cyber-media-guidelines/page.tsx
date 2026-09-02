@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import { LEGAL_PAGES_LAST_UPDATED, COMPANY_NAME } from '@/lib/site-config'
 
 export const metadata: Metadata = {
-    title: 'Cyber Media Guidelines - Bali Journal',
-    description: 'Bali Journal\'s cyber media guidelines, adapted from the Indonesian Press Council standard for online news outlets.',
+    title: 'Cyber Media Guidelines - Jurnal Kotabunan',
+    description: 'Jurnal Kotabunan\'s cyber media guidelines, adapted from the Indonesian Press Council standard for online news outlets.',
     alternates: {
         canonical: '/cyber-media-guidelines',
     },
@@ -18,7 +18,7 @@ export default function CyberMediaGuidelinesPage() {
             <div className="prose prose-slate dark:prose-invert max-w-none space-y-6">
                 <section>
                     <p>
-                        As an online news outlet, Bali Journal additionally adapts the Indonesian Press Council&apos;s
+                        As an online news outlet, Jurnal Kotabunan additionally adapts the Indonesian Press Council&apos;s
                         Cyber Media Guidelines (Pedoman Pemberitaan Media Siber), which apply specifically to how news is
                         verified, corrected, and moderated on a digital platform.
                     </p>
@@ -47,8 +47,8 @@ export default function CyberMediaGuidelinesPage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">3. User Comments</h2>
                     <p>
-                        Bali Journal allows readers to comment on articles. Comments are user-generated content and do not
-                        represent the views of Bali Journal or its editorial team. Every comment is screened for hate
+                        Jurnal Kotabunan allows readers to comment on articles. Comments are user-generated content and do not
+                        represent the views of Jurnal Kotabunan or its editorial team. Every comment is screened for hate
                         speech, defamation, and discriminatory (SARA) content, either automatically or by an editor,
                         before it becomes publicly visible; comments that violate this standard are rejected. We reserve
                         the right to remove any comment that violates Indonesian law or this standard.
@@ -58,7 +58,7 @@ export default function CyberMediaGuidelinesPage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">4. Advertising Identification</h2>
                     <p>
-                        Paid advertising placements on Bali Journal are visually and structurally distinct from editorial
+                        Paid advertising placements on Jurnal Kotabunan are visually and structurally distinct from editorial
                         content - they are banner/display placements, never articles written to appear as independent
                         news coverage. See our{' '}
                         <a href="/transparency" className="text-primary hover:underline">Transparency</a> page for our
@@ -69,7 +69,7 @@ export default function CyberMediaGuidelinesPage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">5. Publisher Identity</h2>
                     <p>
-                        Bali Journal is published by {COMPANY_NAME}. Our editorial contacts are listed on our{' '}
+                        Jurnal Kotabunan is published by {COMPANY_NAME}. Our editorial contacts are listed on our{' '}
                         <a href="/contact" className="text-primary hover:underline">Contact</a> page, and our team is
                         listed on our{' '}
                         <a href="/editorial-team" className="text-primary hover:underline">Editorial Team</a> page.

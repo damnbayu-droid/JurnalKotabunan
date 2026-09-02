@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Facebook, Instagram, Twitter, Youtube, Mail } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const footerLinks = {
   en: {
@@ -63,7 +63,7 @@ const footerLinks = {
 
 const translations = {
   en: {
-    description: 'Independent investigative journalism platform for Bali. Delivering evidence-based news with high journalistic ethics standards.',
+    description: 'Independent investigative journalism platform for Kotabunan. Delivering evidence-based news with high journalistic ethics standards.',
     categories: 'Categories',
     company: 'Company',
     newsletter: 'Newsletter',
@@ -78,7 +78,7 @@ const translations = {
     emailUs: 'Or email us directly:',
   },
   id: {
-    description: 'Platform jurnalisme investigasi independen untuk Bali. Menyajikan berita berbasis bukti dengan standar etika jurnalisme tinggi.',
+    description: 'Platform jurnalisme investigasi independen untuk Kotabunan. Menyajikan berita berbasis bukti dengan standar etika jurnalisme tinggi.',
     categories: 'Kategori',
     company: 'Perusahaan',
     newsletter: 'Newsletter',
@@ -95,19 +95,15 @@ const translations = {
 }
 
 const socialLinks = [
-  { href: 'https://facebook.com', icon: Facebook, label: 'Facebook' },
-  { href: 'https://instagram.com', icon: Instagram, label: 'Instagram' },
-  { href: 'https://twitter.com', icon: Twitter, label: 'Twitter' },
-  { href: 'https://youtube.com', icon: Youtube, label: 'YouTube' },
+  { href: 'https://facebook.com/jurnalkotabunan', icon: Facebook, label: 'Facebook' },
+  { href: 'https://instagram.com/jurnalkotabunan', icon: Instagram, label: 'Instagram' },
+  { href: 'https://twitter.com/jurnalkotabunan', icon: Twitter, label: 'Twitter' },
+  { href: 'https://youtube.com/@jurnalkotabunan', icon: Youtube, label: 'YouTube' },
 ]
 
-function getSavedLang(): 'en' | 'id' {
-  if (typeof window === 'undefined') return 'en'
-  return (localStorage.getItem('lang') as 'en' | 'id') || 'en'
-}
-
 export function Footer() {
-  const [lang, setLang] = useState<'en' | 'id'>('en')
+  // Site is Indonesian-only - no language switch.
+  const lang = 'id' as const
   const [subscribeEmail, setSubscribeEmail] = useState('')
   const [subscribeState, setSubscribeState] = useState<'idle' | 'loading' | 'success' | 'already' | 'error'>('idle')
 
@@ -130,18 +126,6 @@ export function Footer() {
     }
   }
 
-  useEffect(() => {
-    setLang(getSavedLang())
-
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'lang' && e.newValue) {
-        setLang(e.newValue as 'en' | 'id')
-      }
-    }
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
-
   const t = translations[lang]
   const links = footerLinks[lang]
 
@@ -154,7 +138,7 @@ export function Footer() {
             <Link href="/" className="flex items-center space-x-2">
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-tight text-foreground">
-                  Bali <span className="text-primary">Journal</span>
+                  Jurnal <span className="text-primary">Kotabunan</span>
                 </span>
                 <span className="text-[10px] text-muted-foreground -mt-1">
                   {t.tagline}
@@ -253,8 +237,8 @@ export function Footer() {
                 without needing the /contact form. */}
             <p className="text-xs text-muted-foreground mt-3">
               {t.emailUs}{' '}
-              <a href="mailto:info@balijournal.com" className="underline hover:text-foreground">
-                info@balijournal.com
+              <a href="mailto:info@jurnal.kotabunan.com" className="underline hover:text-foreground">
+                info@jurnal.kotabunan.com
               </a>
             </p>
           </div>
@@ -263,7 +247,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Bali Journal. {t.copyright}
+            © {new Date().getFullYear()} Jurnal Kotabunan. {t.copyright}
           </p>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
             {links.legal.map((link) => (

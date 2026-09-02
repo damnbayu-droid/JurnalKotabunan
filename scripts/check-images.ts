@@ -1,5 +1,5 @@
 /**
- * NewsBali — Featured Image Auditor & Repair Tool
+ * Jurnal Kotabunan — Featured Image Auditor & Repair Tool
  *
  * Checks every article's featured image EXACTLY like a browser would:
  * HTTP status + content-type + image magic-bytes verification.
@@ -96,7 +96,7 @@ async function checkImageUrl(url: string, timeoutMs = 15000): Promise<CheckResul
 
 function extractKeywords(title: string): string {
   const ignored = [
-    'bali', 'the', 'and', 'for', 'with', 'announces', 'faces', 'rising',
+    'kotabunan', 'the', 'and', 'for', 'with', 'announces', 'faces', 'rising',
     'amid', 'from', 'into', 'after', 'over', 'amongs', 'new', 'says', 'said',
   ]
   const words = title
@@ -104,7 +104,7 @@ function extractKeywords(title: string): string {
     .replace(/[^a-z0-9 ]/g, '')
     .split(' ')
     .filter((w) => w.length > 3 && !ignored.includes(w))
-  return (words.slice(0, 2).join(',') || 'bali,news')
+  return (words.slice(0, 2).join(',') || 'kotabunan,news')
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -117,7 +117,7 @@ async function tryPollinations(title: string): Promise<string | null> {
   const cleanTitle = title.substring(0, 60).replace(/[^a-zA-Z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim()
 
   const prompts = [
-    `journalistic photo, ${cleanTitle}, bali indonesia, realistic photography, natural light`,
+    `journalistic photo, ${cleanTitle}, kotabunan north sulawesi indonesia, realistic photography, natural light`,
     `${cleanTitle}`,
   ]
 
@@ -148,7 +148,7 @@ async function tryLoremFlickr(title: string): Promise<string | null> {
 
 async function main() {
   console.log('='.repeat(70))
-  console.log(`🖼️  NewsBali Image Checker — mode: ${FIX_MODE ? 'AUDIT + FIX 🛠️' : 'AUDIT ONLY 🔍'}`)
+  console.log(`🖼️  Jurnal Kotabunan Image Checker — mode: ${FIX_MODE ? 'AUDIT + FIX 🛠️' : 'AUDIT ONLY 🔍'}`)
   console.log('='.repeat(70))
 
   const articles = await db.article.findMany({

@@ -22,7 +22,7 @@ async function getEmbedder(): Promise<(text: string) => Promise<number[]>> {
     if (!embedderPromise) {
         embedderPromise = (async () => {
             const { pipeline } = await import('@xenova/transformers')
-            // Multilingual model - Bali Journal's editorial content is mostly
+            // Multilingual model - Jurnal Kotabunan's editorial content is mostly
             // Indonesian, and an English-only model (e.g. all-MiniLM-L6-v2)
             // ranks Indonesian text poorly (verified: it scored an
             // irrelevant traffic memory higher than an on-topic corruption

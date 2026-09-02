@@ -7,13 +7,13 @@ import { useLang } from '@/lib/use-lang'
 
 const translations = {
   en: {
-    heading: 'Want to advertise on Bali Journal?',
-    body: 'Reach readers across Bali - sign up as an advertiser, starting at affordable rates.',
+    heading: 'Want to advertise on Jurnal Kotabunan?',
+    body: 'Reach readers across Kotabunan - sign up as an advertiser, starting at affordable rates.',
     cta: 'Place Ads',
   },
   id: {
-    heading: 'Ingin memasang iklan di Bali Journal?',
-    body: 'Jangkau pembaca Bali - daftar sebagai pengiklan, mulai dari harga terjangkau.',
+    heading: 'Ingin memasang iklan di Jurnal Kotabunan?',
+    body: 'Jangkau pembaca Kotabunan - daftar sebagai pengiklan, mulai dari harga terjangkau.',
     cta: 'Pasang Iklan',
   },
 }

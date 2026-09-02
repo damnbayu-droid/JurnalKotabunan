@@ -30,12 +30,12 @@ const categoryLabels: Record<string, string> = {
 }
 
 const categoryDescriptions: Record<string, string> = {
-  TOURISM: 'News and investigations about Bali tourism industry',
-  GOVERNMENT: 'Bali provincial government policies, Governor statements, regulations, public services, key Jakarta updates affecting Bali',
-  INVESTMENT: 'Analysis and reports about investment in Bali',
-  INCIDENTS: 'Reports of incidents and important events in Bali',
-  LOCAL: 'Local news and community stories across Bali',
-  JOBS: 'Job information and Bali labor market',
+  TOURISM: 'News and investigations about the Kotabunan and North Sulawesi tourism industry',
+  GOVERNMENT: 'Bolaang Mongondow Timur regency and North Sulawesi provincial government policies, Bupati and Governor statements, regulations, public services, key Jakarta updates affecting the region',
+  INVESTMENT: 'Analysis and reports about investment in Kotabunan and Bolaang Mongondow Timur',
+  INCIDENTS: 'Reports of incidents and important events in Kotabunan and Bolaang Mongondow Timur',
+  LOCAL: 'Local news and community stories across Kotabunan',
+  JOBS: 'Job information and the North Sulawesi labor market',
   OPINION: 'Opinions and analysis from our contributors',
 }
 
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   }
 
   return {
-    title: `${categoryLabels[category]} - Bali Journal`,
+    title: `${categoryLabels[category]} - Jurnal Kotabunan`,
     description: categoryDescriptions[category],
     alternates: {
       canonical: `/category/${categorySlug}`,

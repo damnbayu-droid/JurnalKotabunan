@@ -1,6 +1,6 @@
-export const SITE_NAME = 'Bali Journal'
-export const SITE_URL = 'https://www.balijournal.com'
-export const SITE_DOMAIN = 'balijournal.com'
+export const SITE_NAME = 'Jurnal Kotabunan'
+export const SITE_URL = 'https://jurnal.kotabunan.com'
+export const SITE_DOMAIN = 'jurnal.kotabunan.com'
 export const COMPANY_NAME = 'PT Indonesia Oncharge Advertising'
 export const COMPANY_SHORT_NAME = 'PT Oncharge'
 // Shared "Last Updated" date for legal/editorial policy pages - a fixed

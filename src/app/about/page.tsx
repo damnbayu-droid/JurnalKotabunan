@@ -7,8 +7,8 @@ import Image from 'next/image'
 import { db } from '@/lib/db'
 
 export const metadata = {
-  title: 'About Us - Bali Journal',
-  description: 'Learn about Bali Journal\'s mission, team, and editorial standards.',
+  title: 'About Us - Jurnal Kotabunan',
+  description: 'Learn about Jurnal Kotabunan\'s mission, team, and editorial standards.',
   alternates: {
     canonical: '/about',
   },
@@ -48,9 +48,9 @@ export default async function AboutPage() {
       <div className="container mx-auto max-w-4xl px-4">
         {/* Hero */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold mb-4">About Bali Journal</h1>
+          <h1 className="text-3xl font-bold mb-4">About Jurnal Kotabunan</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            An independent investigative journalism platform for Bali, 
+            An independent investigative journalism platform for Kotabunan, 
             committed to evidence-based news and high ethical standards.
           </p>
         </div>
@@ -65,8 +65,8 @@ export default async function AboutPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground leading-relaxed">
-              Bali Journal exists to deliver high-quality investigative journalism 
-              focused on important issues in Bali. We believe the public has the right 
+              Jurnal Kotabunan exists to deliver high-quality investigative journalism 
+              focused on important issues in Kotabunan and Bolaang Mongondow Timur. We believe the public has the right 
               to receive accurate, balanced, and accountable information.
             </p>
             <Separator className="my-4" />
@@ -154,7 +154,7 @@ export default async function AboutPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              Bali Journal uses AI technology to support the editorial process:
+              Jurnal Kotabunan uses AI technology to support the editorial process:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="p-3 rounded-lg border text-center">
@@ -177,7 +177,7 @@ export default async function AboutPage() {
         <div className="text-center space-y-4">
           <h2 className="text-xl font-semibold">Join Us</h2>
           <p className="text-muted-foreground">
-            Become part of the independent investigative journalism community in Bali.
+            Become part of the independent investigative journalism community in Kotabunan.
           </p>
           <div className="flex justify-center gap-4">
             <Link href="/register">

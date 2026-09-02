@@ -4,8 +4,8 @@ import { Metadata } from 'next'
 // state), which can't export `metadata` itself - this sibling layout is
 // the standard way to still give the route its own title/canonical.
 export const metadata: Metadata = {
-  title: 'Contact Us - Bali Journal',
-  description: 'Get in touch with the Bali Journal editorial team.',
+  title: 'Contact Us - Jurnal Kotabunan',
+  description: 'Get in touch with the Jurnal Kotabunan editorial team.',
   alternates: {
     canonical: '/contact',
   },

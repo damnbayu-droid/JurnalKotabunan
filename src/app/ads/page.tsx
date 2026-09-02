@@ -2,7 +2,7 @@ import { db } from '@/lib/db'
 import { AdsOrderFlow } from '@/components/ads/ads-order-flow'
 
 export const metadata = {
-  title: 'Advertise on Bali Journal - Ad Sizes & Pricing',
+  title: 'Advertise on Jurnal Kotabunan - Ad Sizes & Pricing',
   description: 'Check available ad slot sizes and prices, and place your ad order directly.',
   alternates: {
     canonical: '/ads',

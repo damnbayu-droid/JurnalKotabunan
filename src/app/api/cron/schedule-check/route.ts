@@ -19,7 +19,7 @@ import type { Category } from '@prisma/client'
  * from-scratch replacement, not a patch of that dead code.
  */
 
-const BALI_TZ = 'Asia/Makassar' // WITA, UTC+8, no DST - matches Bali local time
+const BALI_TZ = 'Asia/Makassar' // WITA, UTC+8, no DST - matches Kotabunan (North Sulawesi) local time
 
 function getBaliNow(): { hhmm: string; dateStr: string; minutesSinceMidnight: number } {
     const fmt = new Intl.DateTimeFormat('en-CA', {

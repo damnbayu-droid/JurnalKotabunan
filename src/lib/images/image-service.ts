@@ -1,7 +1,7 @@
 import { uploadImage } from '@/lib/storage/upload-image'
 
 /**
- * Centralised image pipeline for Bali Journal.
+ * Centralised image pipeline for Jurnal Kotabunan.
  *
  * Generates an image via an external generator (Pollinations -> LoremFlickr
  * fallback), VERIFIES the binary response (content-type + minimum size),
@@ -33,10 +33,10 @@ export interface StoredImage {
 
 function cleanPromptText(input: string, max = 60): string {
     return (
-        (input || 'bali news')
+        (input || 'kotabunan news')
             .substring(0, max)
             .replace(/[^a-zA-Z0-9 ]/g, '')
-            .trim() || 'bali news'
+            .trim() || 'kotabunan news'
     )
 }
 
@@ -51,13 +51,13 @@ function buildPollinationsUrl(prompt: string): string {
 }
 
 function extractKeywords(title: string): string {
-    const ignored = ['bali', 'the', 'and', 'for', 'with', 'from', 'this', 'that', 'have', 'will']
+    const ignored = ['kotabunan', 'the', 'and', 'for', 'with', 'from', 'this', 'that', 'have', 'will']
     const words = title
         .toLowerCase()
         .replace(/[^a-z0-9 ]/g, ' ')
         .split(/\s+/)
         .filter((w) => w.length > 3 && !ignored.includes(w))
-    return words.slice(0, 2).join(',') || 'bali,news'
+    return words.slice(0, 2).join(',') || 'kotabunan,news'
 }
 
 // ---------------------------------------------------------------------------
@@ -77,14 +77,14 @@ function extractKeywords(title: string): string {
 const CATEGORY_VISUAL_CONCEPTS: Record<string, string[]> = {
     TOURISM: [
         'white-sand beach with turquoise water, surfers in the distance',
-        'ancient stone temple gate (candi bentar) framed by tropical foliage',
-        'luxury resort infinity pool overlooking rice terraces',
-        'bustling tourist street market with handicrafts and warungs',
-        'traditional Balinese dance performance, ornate costumes',
-        'rice terrace landscape at sunrise, Ubud countryside',
-        'beach club sunset gathering, string lights, ocean view',
+        'wooden village mosque framed by tropical foliage',
+        'hillside homestay veranda overlooking coconut plantations',
+        'bustling local street market with handicrafts and warungs',
+        'traditional Mongondow dance performance, ornate costumes',
+        'coconut plantation and forested hills at sunrise, North Sulawesi countryside',
+        'seaside gathering at sunset, string lights, ocean view',
         'scooter riders navigating a scenic coastal road',
-        'yacht or dive boat off a Bali coastline',
+        'dive boat off the Kotabunan coastline',
         'hotel lobby with tropical architecture and greenery',
     ],
     GOVERNMENT: [
@@ -124,15 +124,15 @@ const CATEGORY_VISUAL_CONCEPTS: Record<string, string[]> = {
         'community members assisting during a local emergency',
     ],
     LOCAL: [
-        'traditional Balinese ceremony, offerings and incense',
+        'traditional Mongondow community ceremony, ceremonial dress',
         'local market vendors selling fresh produce',
         'village elders in discussion under a banyan tree',
         'community gotong-royong (mutual aid) work event',
-        'traditional home compound courtyard scene',
+        'traditional Mongondow wooden house courtyard scene',
         'schoolchildren walking through a village lane',
         'local artisan crafting traditional goods by hand',
-        'rural road lined with rice paddies and farmers',
-        'neighborhood banjar (community hall) gathering',
+        'rural road lined with coconut palms and farmers',
+        'village hall (balai desa) community gathering',
         'fishermen preparing boats at a local harbor',
     ],
     JOBS: [
@@ -148,15 +148,15 @@ const CATEGORY_VISUAL_CONCEPTS: Record<string, string[]> = {
         'graduation or certification ceremony for trainees',
     ],
     OPINION: [
-        'empty park bench overlooking a Bali cityscape at dusk',
+        'empty park bench overlooking a coastal town at dusk',
         'close-up of hands writing notes at a wooden desk',
-        'silhouette of a person against a dramatic Bali sunset',
-        'scales-of-justice motif with a Balinese temple gate in the background',
+        'silhouette of a person against a dramatic North Sulawesi sunset',
+        'scales-of-justice motif with a village mosque and church in the background',
         'quiet coffee shop table with a laptop and notebook, contemplative mood',
         'wide shot of a crowded street symbolizing public debate',
-        'traditional and modern Bali architecture juxtaposed in one frame',
+        'traditional and modern North Sulawesi architecture juxtaposed in one frame',
         'close-up of a gavel or ballot box, symbolic of policy and decisions',
-        'aerial view of Bali\'s coastline representing the island\'s future',
+        'aerial view of the Kotabunan coastline representing the region\'s future',
         'a lone figure walking along a quiet rice-terrace path, reflective mood',
     ],
 }
@@ -179,7 +179,7 @@ const SAFE_CONTENT_CLAUSE =
     'fully clothed, professional attire, tasteful composition, appropriate for a general-audience news outlet, no nudity, no sexual content'
 
 const PROMPT_STOPWORDS = new Set([
-    'bali', 'this', 'that', 'with', 'from', 'have', 'will', 'their', 'about',
+    'kotabunan', 'this', 'that', 'with', 'from', 'have', 'will', 'their', 'about',
     'after', 'over', 'into', 'than', 'then', 'they', 'them', 'were', 'been',
     'more', 'most', 'also', 'said', 'says', 'amid', 'among', 'which', 'while',
     'announced', 'faces', 'rising', 'new', 'the', 'and', 'for', 'are',
@@ -253,7 +253,7 @@ export function buildImagePrompt(title: string, category?: string, excerpt?: str
         `subject: ${titleContext}` +
         (excerptSnippet ? `, additional detail: ${excerptSnippet}` : '') +
         `, ${composition}, ${timeOfDay}, ` +
-        `bali indonesia, photojournalism, natural lighting, sharp focus, high detail, ` +
+        `kotabunan north sulawesi indonesia, photojournalism, natural lighting, sharp focus, high detail, ` +
         `${SAFE_CONTENT_CLAUSE}`
     ).slice(0, 480)
 }
@@ -357,7 +357,7 @@ const pollinationsStrategy: GeneratorStrategy = {
     name: 'pollinations',
     buildCandidates: (prompt, cleanTitle) => [
         urlCandidate(buildPollinationsUrl(prompt), 'AI-Generated Illustration'),
-        urlCandidate(buildPollinationsUrl(`bali news ${cleanTitle}`), 'AI-Generated Illustration'),
+        urlCandidate(buildPollinationsUrl(`kotabunan news ${cleanTitle}`), 'AI-Generated Illustration'),
         LOREMFLICKR_FALLBACK(cleanTitle),
     ],
 }
@@ -388,7 +388,7 @@ const unsplashStrategy: GeneratorStrategy = {
             label: 'Stock Photo (Unsplash)',
             fetch: async () => {
                 const { searchUnsplashPhoto } = await import('@/lib/ai/providers/unsplash')
-                return searchUnsplashPhoto(`bali ${cleanTitle}`)
+                return searchUnsplashPhoto(`north sulawesi ${cleanTitle}`)
             },
         },
         urlCandidate(buildPollinationsUrl(prompt), 'AI-Generated Illustration'),
@@ -444,7 +444,7 @@ function nextGeneratorStrategy(pool?: GeneratorStrategy[]): GeneratorStrategy {
  *   working unchanged.
  * @param context Category/excerpt used to build the default prompt when no
  *   promptOverride is given - skip this and the prompt falls back to a
- *   generic "bali news" framing.
+ *   generic "kotabunan news" framing.
  * @param pool Override the generator rotation for this call only (own
  *   counter, doesn't touch the default pool's rotation state) - for one-off
  *   bulk batches that want wider source variety than the site's normal

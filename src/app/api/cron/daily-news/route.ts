@@ -4,7 +4,7 @@ import { generateNewsArticles } from '@/lib/ai/news-generator'
 import { db } from '@/lib/db'
 
 // This endpoint is called by Vercel Cron or external schedulers
-// Runs daily at 6 AM Bali time (UTC+8)
+// Runs daily at 6 AM WITA (Kotabunan local time, UTC+8)
 export async function GET(request: Request) {
     try {
         // Verify cron secret for security (Vercel Cron sets this header)

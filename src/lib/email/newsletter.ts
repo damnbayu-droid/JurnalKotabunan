@@ -13,8 +13,8 @@ function getClient(): Resend {
 }
 
 function fromHeader(): string {
-    const fromName = process.env.RESEND_FROM_NAME || 'Bali Journal'
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'contact@balijournal.com'
+    const fromName = process.env.RESEND_FROM_NAME || 'Jurnal Kotabunan'
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'info@jurnal.kotabunan.com'
     return `${fromName} <${fromEmail}>`
 }
 
@@ -30,7 +30,7 @@ export async function sendWelcomeEmail(to: string, subscriberId: string): Promis
     const html = renderEmailLayout(`
       <p style="margin:0 0 12px;font-size:18px;font-weight:bold;">Terima kasih sudah berlangganan!</p>
       <p style="margin:0;white-space:pre-wrap;">
-        Kamu akan menerima email setiap kali ada berita baru dari ${SITE_NAME} - investigative journalism dari Bali, Indonesia.
+        Kamu akan menerima email setiap kali ada berita baru dari ${SITE_NAME} - jurnalisme investigasi dari Kotabunan, Sulawesi Utara, Indonesia.
       </p>
       ${unsubscribeFooter(subscriberId)}
     `)

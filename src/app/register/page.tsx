@@ -63,7 +63,7 @@ export default function RegisterPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Register</CardTitle>
           <CardDescription>
-            Create a new Bali Journal account
+            Create a new Jurnal Kotabunan account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>

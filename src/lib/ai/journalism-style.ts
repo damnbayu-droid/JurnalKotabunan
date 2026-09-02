@@ -11,7 +11,7 @@
 // ---------------------------------------------------------------------------
 // Title diversity - a user audit of the 49-article Feb-Aug 2026 backfill
 // batch found headlines leaning on the same handful of templates ("X Faces
-// Y", "Bali Sees Rise in X") repeatedly. This is injected into every prompt
+// Y", "Kotabunan Sees Rise in X") repeatedly. This is injected into every prompt
 // that asks the model for a title, alongside the existing topic-level
 // avoid-list (findSimilarTitle/getExistingTitlesForCategory in
 // news-generator.ts, which stops REPEATED TOPICS - this stops repeated
@@ -21,16 +21,16 @@ export const TITLE_DIVERSITY_RULES = `
 HEADLINE VARIETY (follow these to avoid every headline sounding the same shape):
 1. Before writing the headline, silently pick ONE structural approach from this list and commit to it - do not default to the same one every time:
    a) Direct statement of the news ("Governor Signs New Visa Rules")
-   b) Number/statistic lead ("64 Flights Cancelled as Tensions Disrupt Bali Routes")
-   c) Place-first framing ("In Canggu, a Flood Warning Becomes a Traffic Crisis")
+   b) Number/statistic lead ("64 Flights Cancelled as Tensions Disrupt Manado Routes")
+   c) Place-first framing ("In Kotabunan, a Flood Warning Becomes a Traffic Crisis")
    d) Consequence/impact lead, stating the effect before the cause ("Hotel Bookings Drop After New Visa Rule")
    e) Action-verb-first, present tense, no subject preamble ("Blocks", "Seizes", "Reveals", "Grounds")
    f) Question framing, used sparingly - only when the story genuinely centers on an open question
    g) Contrast/tension framing ("Tourists Flock In as Locals Push Back")
 2. Vary sentence length deliberately: mix short punchy headlines (6-8 words) with longer descriptive ones (12-15 words) - do not let every headline land at the same length.
-3. Never open two consecutive headlines with the same word (especially "Bali", "New", "Government", "Tourists") - if the natural draft starts that way, restructure it.
-4. Ban these overused generic templates outright - if your draft matches one, rewrite it: "X Faces Y", "Bali Sees Rise/Surge in X", "New Policy on X", "X: What You Need to Know", "The Truth About X", "X Amid Y".
-5. Prefer concrete nouns over abstractions: a specific place, agency, number, or person's title beats a vague category word ("tourism sector" -> "Ngurah Rai Airport"; "officials" -> "the Tourism Ministry").
+3. Never open two consecutive headlines with the same word (especially "Kotabunan", "New", "Government", "Tourists") - if the natural draft starts that way, restructure it.
+4. Ban these overused generic templates outright - if your draft matches one, rewrite it: "X Faces Y", "Kotabunan Sees Rise/Surge in X", "New Policy on X", "X: What You Need to Know", "The Truth About X", "X Amid Y".
+5. Prefer concrete nouns over abstractions: a specific place, agency, number, or person's title beats a vague category word ("tourism sector" -> "Sam Ratulangi Airport"; "officials" -> "the Tourism Ministry").
 6. Vary the verb: don't default to "Announces", "Introduces", or "Faces" - use precise verbs the story actually supports (blocks, deports, grounds, disburses, doubles, stalls, reverses).
 7. Lead with the most surprising or specific detail in the story, not the broadest category it belongs to.
 8. Avoid stacking more than one colon or dash per headline - pick one framing device, not several at once.
@@ -40,12 +40,12 @@ HEADLINE VARIETY (follow these to avoid every headline sounding the same shape):
 12. Avoid "-ing" gerund openers as a default crutch ("Rising Prices Hit..." used repeatedly) - mix in finite-verb constructions instead.
 13. Use active voice by default; passive voice only when the actor is genuinely unknown or irrelevant to the story.
 14. Don't pad with filler qualifiers ("In a Move That...", "In What Officials Call...") - get to the specific fact.
-15. For OPINION/analysis pieces, it's fine (and often better) to use a colon-framed label + claim ("Editorial: Bali's Real Scandal Is What Nobody Checked") rather than forcing a hard-news structure onto commentary.
-16. Vary where the location sits in the sentence - not always "Bali [verb] [thing]"; sometimes the location belongs at the end or middle.
+15. For OPINION/analysis pieces, it's fine (and often better) to use a colon-framed label + claim ("Editorial: Kotabunan's Real Scandal Is What Nobody Checked") rather than forcing a hard-news structure onto commentary.
+16. Vary where the location sits in the sentence - not always "Kotabunan [verb] [thing]"; sometimes the location belongs at the end or middle.
 17. Avoid repeating the exact same key noun from the short description verbatim in the headline - paraphrase at least one central term.
 18. Don't use the same punctuation pattern (e.g. always ending in a period-less declarative) across a run of articles - headlines can end plainly, but avoid mechanical uniformity in how the very last word/phrase resolves.
 19. If the story involves a named individual, consider leading with their role or the action, not always their nationality label first ("Norwegian Woman Deported..." repeated pattern - vary between name/role-first and action-first).
-20. Prefer specific institution names (KEK Kura Kura Bali, Ngurah Rai International Airport, Udayana University) over generic references ("a new zone", "the airport", "a university") whenever the source material supports it.
+20. Prefer specific institution names (KEK Bitung, Sam Ratulangi International Airport, Sam Ratulangi University) over generic references ("a new zone", "the airport", "a university") whenever the source material supports it.
 21. Avoid stock transition words as headline openers ("Meanwhile,", "Amid growing..., ") - open directly on the news.
 22. When the story is genuinely about a trend over time, it's fine to use "X Percent" or "X-Year High/Low" framing - but don't use it as the ONLY numeric framing pattern across a batch.
 23. Keep headlines under roughly 90 characters, but within that budget, let length vary naturally with the story's complexity rather than always maximizing it.
@@ -68,7 +68,7 @@ interface WritingStyle {
 }
 
 const SHARED_FORMATTING_RULES = `
-- The "Inverted Pyramid" and "5W1H" (Who, What, Where, When, Why, How) are internal structuring guidance for YOU, the writer, regardless of which style below you're using. NEVER print them, or any other planning/section label, as visible text in the article. Forbidden as headings or labels - none of these, or anything with the same generic/report-template flavor, may appear anywhere in the output: "LEAD", "THE FACTS", "KEY QUOTES", "BACKGROUND/CONTEXT", "IMPACT", "OPPOSING VIEWS", "CONCLUSION", "Bali Journal Analysis", "Main Data & Facts", "The Key Players", "Chronology & Activities", "Public & Economic Impact", "Key Takeaways". A real news article never announces its own structure and never reads like a corporate report or a listicle.
+- The "Inverted Pyramid" and "5W1H" (Who, What, Where, When, Why, How) are internal structuring guidance for YOU, the writer, regardless of which style below you're using. NEVER print them, or any other planning/section label, as visible text in the article. Forbidden as headings or labels - none of these, or anything with the same generic/report-template flavor, may appear anywhere in the output: "LEAD", "THE FACTS", "KEY QUOTES", "BACKGROUND/CONTEXT", "IMPACT", "OPPOSING VIEWS", "CONCLUSION", "Jurnal Kotabunan Analysis", "Main Data & Facts", "The Key Players", "Chronology & Activities", "Public & Economic Impact", "Key Takeaways". A real news article never announces its own structure and never reads like a corporate report or a listicle.
 - Subheadings are optional. Use at most 2-4, only in pieces long enough to need them. Each must be a short, specific, content-derived phrase, never a generic scaffolding word.
 - Formatting: HTML only. Use <p> for every paragraph and <h3> for the rare subheading. No markdown syntax (no **, ##, etc.) anywhere in the output.
 - LENGTH IS MANDATORY, NOT A SUGGESTION: write a minimum of 600 words and aim for 800-1000. That means at least 8-10 substantial paragraphs (3-5 sentences each) covering the lead, supporting facts with specific numbers/names/places, background, and consequences/next steps. A 3-paragraph article is a FAILED response.

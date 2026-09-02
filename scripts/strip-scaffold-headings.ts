@@ -1,5 +1,5 @@
 /**
- * NewsBali — Deterministic Scaffold-Heading Stripper
+ * Jurnal Kotabunan — Deterministic Scaffold-Heading Stripper
  *
  * The AI rewrite pass (rewrite-scaffold-content.ts) turned out unreliable:
  * for a lot of articles it just echoed the same "<h3>LEAD (The Hook)</h3>"

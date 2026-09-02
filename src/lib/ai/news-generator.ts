@@ -98,7 +98,7 @@ export function findSimilarTitle(candidate: string, existingTitles: string[]): s
 
 const CATEGORY_GUIDELINES = {
     TOURISM: 'tourism industry, hotels, festivals, cultural attractions, visitor experiences',
-    GOVERNMENT: 'Bali provincial government policies, Governor statements, regulations, public services, key Jakarta updates affecting Bali',
+    GOVERNMENT: 'Bolaang Mongondow Timur regency and North Sulawesi provincial government policies, Bupati and Governor statements, regulations, public services, key Jakarta updates affecting the region',
     INVESTMENT: 'business investments, startups, funding rounds, economic development, venture capital',
     INCIDENTS: 'accidents, natural disasters, emergencies, safety alerts, volcanic activity',
     LOCAL: 'community initiatives, local government programs, cultural preservation, infrastructure',
@@ -111,9 +111,9 @@ async function generateArticleContent(category: Category, avoidTitles: string[] 
         ? `\n\nALREADY COVERED - DO NOT repeat these topics/angles, pick something genuinely different:\n${avoidTitles.map((t) => `- "${t}"`).join('\n')}\n`
         : ''
 
-    const prompt = `You are a Senior Investigative Journalist for Bali Journal, a prestigious English-language news outlet in Indonesia.
+    const prompt = `You are a Senior Investigative Journalist for Jurnal Kotabunan, a prestigious English-language news outlet in Indonesia.
 
-    TASK: Write a comprehensive, high-quality news article based on REAL or HIGHLY REALISTIC CURRENT TRENDS in Bali.
+    TASK: Write a comprehensive, high-quality news article based on REAL or HIGHLY REALISTIC CURRENT TRENDS in Kotabunan and Bolaang Mongondow Timur, North Sulawesi.
 
     SPECIFICATIONS:
     - Category: ${category}
@@ -125,8 +125,8 @@ async function generateArticleContent(category: Category, avoidTitles: string[] 
     ${TITLE_DIVERSITY_RULES}
 
     CONTENT RULES:
-    - **REALISM**: Use REAL locations (specific streets in Canggu, offices in Renon, temples, etc.). Use REAL titles of officials (e.g., Governor, Head of Tourism Board).
-    - **NO FAKE NEWS**: Do not invent disasters or crimes unless generating for "INCIDENTS". Focus on factual trends (e.g., Traffic congestion in Canggu, New Visa rules, Investment boom in Uluwatu).
+    - **REALISM**: Use REAL locations (villages and streets in Kotabunan, government offices in Tutuyan, markets, coastal areas, etc.). Use REAL titles of officials (e.g., Bupati, Camat, Head of Tourism Board).
+    - **NO FAKE NEWS**: Do not invent disasters or crimes unless generating for "INCIDENTS". Focus on factual trends (e.g., Trans-Sulawesi road congestion, new mining or plantation regulations, investment in Bolaang Mongondow Timur).
 
     CRITICAL: Return ONLY a valid JSON object with this EXACT structure:
     {

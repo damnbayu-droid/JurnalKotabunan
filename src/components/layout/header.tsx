@@ -10,7 +10,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Menu, Search, User, X, Settings, Sun, Moon, Monitor, Check } from 'lucide-react'
@@ -60,32 +59,16 @@ const translations = {
   },
 }
 
-// Helper to get initial language - default to English
-function getSavedLang(): 'en' | 'id' {
-  if (typeof window === 'undefined') return 'en'
-  return (localStorage.getItem('lang') as 'en' | 'id') || 'en'
-}
-
 export function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
-  const [lang, setLang] = useState<'en' | 'id'>('en')
+  // Site is Indonesian-only - no language switch.
+  const lang = 'id' as const
   const [hydrated, setHydrated] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
-    setLang(getSavedLang())
     setHydrated(true)
   }, [])
-
-  const toggleLang = () => {
-    const newLang = lang === 'en' ? 'id' : 'en'
-    setLang(newLang)
-    localStorage.setItem('lang', newLang)
-    window.dispatchEvent(new StorageEvent('storage', {
-      key: 'lang',
-      newValue: newLang,
-    }))
-  }
 
   const t = translations[lang]
   const cats = categories[lang]
@@ -97,7 +80,7 @@ export function Header() {
         <Link href="/" className="flex items-center space-x-2">
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-tight text-foreground">
-              Bali <span className="text-primary">Journal</span>
+              Jurnal <span className="text-primary">Kotabunan</span>
             </span>
             <span className="text-[10px] text-muted-foreground -mt-1">
               {t.tagline}
@@ -152,20 +135,12 @@ export function Header() {
                       settles correctly post-hydration; nothing about aria wiring or click
                       behavior is affected). suppressHydrationWarning targets just that one
                       attribute instead of silencing hydration mismatches app-wide. */}
-                  <Button variant="ghost" size="icon" suppressHydrationWarning aria-label="Bahasa & Tema">
+                  <Button variant="ghost" size="icon" suppressHydrationWarning aria-label="Tema">
                     <Settings className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuLabel>Bahasa / Language</DropdownMenuLabel>
-                  <DropdownMenuItem onClick={() => lang !== 'en' && toggleLang()}>
-                    English {lang === 'en' && <Check className="ml-auto h-4 w-4" />}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => lang !== 'id' && toggleLang()}>
-                    Bahasa Indonesia {lang === 'id' && <Check className="ml-auto h-4 w-4" />}
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuLabel>Tema / Theme</DropdownMenuLabel>
+                  <DropdownMenuLabel>Tema</DropdownMenuLabel>
                   <DropdownMenuItem onClick={() => setTheme('light')}>
                     <Sun className="mr-2 h-4 w-4" /> Terang
                     {theme === 'light' && <Check className="ml-auto h-4 w-4" />}

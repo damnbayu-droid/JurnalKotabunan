@@ -449,7 +449,7 @@ export function AiControls({ onSuccess, onError, onRefresh }: AiControlsProps) {
                         <div className="w-3 h-3 rounded-full bg-red-500" />
                         <div className="w-3 h-3 rounded-full bg-yellow-500" />
                         <div className="w-3 h-3 rounded-full bg-green-500" />
-                        <span className="ml-2 text-xs font-mono text-slate-400">balijournal-ai-terminal — bash — 80x24</span>
+                        <span className="ml-2 text-xs font-mono text-slate-400">jurnalkotabunan-ai-terminal — bash — 80x24</span>
                     </div>
                     {refreshingLogs && <Loader2 className="h-3 w-3 text-slate-500 animate-spin" />}
                 </div>

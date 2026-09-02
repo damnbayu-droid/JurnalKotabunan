@@ -1,6 +1,6 @@
 /**
  * One-off runner mirroring src/app/api/ai/process-raw-data/route.ts's
- * pipeline (raw text/press-release -> Bali Journal article), invoked
+ * pipeline (raw text/press-release -> Jurnal Kotabunan article), invoked
  * directly instead of through the authenticated admin HTTP endpoint.
  *
  * Usage: bun scripts/run-single-process-raw-data.ts <path-to-text-or-md-file>
@@ -27,7 +27,7 @@ async function main() {
     }>('chatbot', [
         {
             role: 'system',
-            content: `You are a senior editor at Bali Journal. You are given raw data, notes, or a press release.
+            content: `You are a senior editor at Jurnal Kotabunan. You are given raw data, notes, or a press release.
             Your task is to transform this into a professional, journalistic news article, using the 5W1H standard (Who, What, Where, When, Why, How) as your internal outline only.
 
             ${pickWritingStyle().rules}

@@ -1,5 +1,5 @@
 /**
- * NewsBali — Scaffold-Label Content Rewriter
+ * Jurnal Kotabunan — Scaffold-Label Content Rewriter
  *
  * Problem: articles generated before the news-generator.ts prompt fix
  * literally printed their own internal writing-structure labels as visible
@@ -38,7 +38,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 async function main() {
   console.log('='.repeat(72))
-  console.log(`📰 NewsBali Scaffold-Label Content Rewriter — mode: ${RUN_MODE ? 'REWRITE 🛠️' : 'AUDIT ONLY 🔍'}`)
+  console.log(`📰 Jurnal Kotabunan Scaffold-Label Content Rewriter — mode: ${RUN_MODE ? 'REWRITE 🛠️' : 'AUDIT ONLY 🔍'}`)
   console.log('='.repeat(72))
 
   const articles = await db.article.findMany({
@@ -79,7 +79,7 @@ async function main() {
       const result = await myaiCompleteJSON<{ content?: string }>('content_journalist', [
         {
           role: 'system',
-          content: `You are a senior editor at NewsBali rewriting a draft that a junior AI writer produced with visible internal planning labels still in the text. Rewrite it into a clean, professional news article - same facts, quotes, names, and numbers, just restructured as real prose.
+          content: `You are a senior editor at Jurnal Kotabunan rewriting a draft that a junior AI writer produced with visible internal planning labels still in the text. Rewrite it into a clean, professional news article - same facts, quotes, names, and numbers, just restructured as real prose.
 
 ${pickWritingStyle().rules}
 

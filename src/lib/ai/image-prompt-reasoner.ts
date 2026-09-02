@@ -43,14 +43,14 @@ function contentSlice(content: string): string {
  * prompt despite being told not to (observed in testing: a narrative
  * paragraph, blank line, then the real "Capture a scene..." prompt). Strip
  * that leaked preamble by preferring the paragraph that actually contains
- * the required "Bali, Indonesia" phrase, since the leaked reasoning
- * paragraph typically doesn't include it.
+ * the required "Kotabunan, North Sulawesi, Indonesia" phrase, since the
+ * leaked reasoning paragraph typically doesn't include it.
  */
 function extractPromptText(raw: string): string {
     const cleaned = raw.trim().replace(/^["']|["']$/g, '')
     const paragraphs = cleaned.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean)
     if (paragraphs.length <= 1) return cleaned
-    const withPhrase = paragraphs.filter((p) => /Bali,?\s*Indonesia/i.test(p))
+    const withPhrase = paragraphs.filter((p) => /Kotabunan.*Indonesia/i.test(p))
     return withPhrase.length ? withPhrase[withPhrase.length - 1] : paragraphs[paragraphs.length - 1]
 }
 
@@ -76,11 +76,11 @@ export async function buildReasonedImagePrompt(input: ReasonedImagePromptInput):
         const raw = await myaiComplete('chatbot', [
             {
                 role: 'system',
-                content: `You are a photo editor for a Bali news outlet. Read a news story's headline, summary, and an excerpt of its body text. Identify the single most visually concrete subject of the story and 2-3 specific details (a place, an object, an action, or a mood) that are unique to THIS story - not generic stock-photo keywords for its category. Then write exactly one image-generation prompt (60-100 words) for an editorial photograph illustrating this specific story, in this visual style: ${visualStyle}.
+                content: `You are a photo editor for a Kotabunan (North Sulawesi, Indonesia) news outlet. Read a news story's headline, summary, and an excerpt of its body text. Identify the single most visually concrete subject of the story and 2-3 specific details (a place, an object, an action, or a mood) that are unique to THIS story - not generic stock-photo keywords for its category. Then write exactly one image-generation prompt (60-100 words) for an editorial photograph illustrating this specific story, in this visual style: ${visualStyle}.
 
 The prompt must:
 - Ground the image in the concrete details you identified, not just the category.
-- Include: "Bali, Indonesia", the visual style described above, and this safety clause verbatim: "fully clothed, professional attire, tasteful composition, appropriate for a general-audience news outlet, no nudity, no sexual content".
+- Include: "Kotabunan, North Sulawesi, Indonesia", the visual style described above, and this safety clause verbatim: "fully clothed, professional attire, tasteful composition, appropriate for a general-audience news outlet, no nudity, no sexual content".
 - Never mention real named individuals by name (describe roles/actions instead, not identities).
 - NEVER default to a person reading, holding, or looking at a newspaper - this is a stock-photo cliche that shows up so often it makes every story look identical, especially for abstract/analytical stories (opinion, analysis) that don't have an obvious concrete subject. For those, use something else grounded in the story's actual topic instead: a symbolic object, a relevant location, an abstract/artistic composition, a silhouette, an aerial view - anything but a person with a newspaper.
 

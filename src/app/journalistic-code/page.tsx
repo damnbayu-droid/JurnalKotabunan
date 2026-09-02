@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import { LEGAL_PAGES_LAST_UPDATED } from '@/lib/site-config'
 
 export const metadata: Metadata = {
-    title: 'Journalistic Code of Ethics - Bali Journal',
-    description: 'Bali Journal\'s journalistic code of ethics, adapted from the Indonesian Press Council standard.',
+    title: 'Journalistic Code of Ethics - Jurnal Kotabunan',
+    description: 'Jurnal Kotabunan\'s journalistic code of ethics, adapted from the Indonesian Press Council standard.',
     alternates: {
         canonical: '/journalistic-code',
     },
@@ -18,9 +18,9 @@ export default function JournalisticCodePage() {
             <div className="prose prose-slate dark:prose-invert max-w-none space-y-6">
                 <section>
                     <p>
-                        Bali Journal operates under Indonesian press law and adapts the Indonesian Press Council&apos;s
+                        Jurnal Kotabunan operates under Indonesian press law and adapts the Indonesian Press Council&apos;s
                         (Dewan Pers) national Journalistic Code of Ethics (Kode Etik Jurnalistik) to our own editorial
-                        process. This code applies to every article published under the Bali Journal name, regardless of
+                        process. This code applies to every article published under the Jurnal Kotabunan name, regardless of
                         whether it was drafted with AI assistance.
                     </p>
                 </section>
@@ -28,7 +28,7 @@ export default function JournalisticCodePage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">1. Independence and Good Faith</h2>
                     <p>
-                        Bali Journal reports independently and in good faith, producing news that is accurate, balanced,
+                        Jurnal Kotabunan reports independently and in good faith, producing news that is accurate, balanced,
                         and does not carry ill intent. Editorial decisions on what to cover and how are not influenced by
                         advertisers, sponsors, or political interests.
                     </p>
@@ -39,7 +39,7 @@ export default function JournalisticCodePage() {
                     <p>
                         We obtain and report information through legitimate, professional means: verifying claims,
                         crediting original sources, and citing published evidence for factual assertions. Every article on
-                        Bali Journal is required to reference at least one piece of supporting evidence before it can be
+                        Jurnal Kotabunan is required to reference at least one piece of supporting evidence before it can be
                         published.
                     </p>
                 </section>
@@ -56,7 +56,7 @@ export default function JournalisticCodePage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">4. No Fabrication, Defamation, or Obscenity</h2>
                     <p>
-                        Bali Journal does not publish fabricated, slanderous, or obscene news, and does not name or imply
+                        Jurnal Kotabunan does not publish fabricated, slanderous, or obscene news, and does not name or imply
                         specific accusations against private individuals without a documented, verifiable basis. Every
                         article is screened through an automated legal-risk assessment before publication precisely to
                         catch unsubstantiated accusations before they reach print.

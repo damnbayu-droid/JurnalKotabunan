@@ -18,7 +18,7 @@ interface ArticleJsonLdProps {
   article: Article
 }
 
-// Bali Journal operates under (is a division of) PT Indonesia Oncharge
+// Jurnal Kotabunan operates under (is a division of) PT Indonesia Oncharge
 // Advertising - expressed via schema.org's parentOrganization property so
 // it's machine-readable wherever the publisher/organization is declared.
 const PARENT_ORGANIZATION = {
@@ -27,9 +27,10 @@ const PARENT_ORGANIZATION = {
   alternateName: COMPANY_SHORT_NAME,
 }
 
-const BALI_ADDRESS = {
+const KOTABUNAN_ADDRESS = {
   '@type': 'PostalAddress',
-  addressRegion: 'Bali',
+  addressLocality: 'Kotabunan',
+  addressRegion: 'Sulawesi Utara',
   addressCountry: 'ID',
 }
 
@@ -63,7 +64,7 @@ export function ArticleJsonLd({ article }: ArticleJsonLdProps) {
       '@type': 'Organization',
       name: SITE_NAME,
       parentOrganization: PARENT_ORGANIZATION,
-      address: BALI_ADDRESS,
+      address: KOTABUNAN_ADDRESS,
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_URL}/icon-512.png`,
@@ -76,7 +77,7 @@ export function ArticleJsonLd({ article }: ArticleJsonLdProps) {
       '@id': `${SITE_URL}/article/${article.slug}`,
     },
     articleSection: article.category,
-    inLanguage: 'en',
+    inLanguage: 'id',
   }
 
   return (
@@ -136,15 +137,15 @@ export function OrganizationJsonLd() {
     url: SITE_URL,
     logo: `${SITE_URL}/icon-512.png`,
     parentOrganization: PARENT_ORGANIZATION,
-    address: BALI_ADDRESS,
+    address: KOTABUNAN_ADDRESS,
     areaServed: {
       '@type': 'AdministrativeArea',
-      name: 'Bali',
+      name: 'Kotabunan, Bolaang Mongondow Timur, Sulawesi Utara',
     },
     sameAs: [
-      'https://facebook.com/balijournal',
-      'https://twitter.com/balijournal',
-      'https://instagram.com/balijournal',
+      'https://facebook.com/jurnalkotabunan',
+      'https://twitter.com/jurnalkotabunan',
+      'https://instagram.com/jurnalkotabunan',
     ],
     contactPoint: {
       '@type': 'ContactPoint',

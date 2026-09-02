@@ -26,8 +26,8 @@ export interface RewriteExternalNewsResult {
 }
 
 /**
- * Fetches an external news URL, has the AI rewrite it into an original Bali
- * Journal article, generates+stores a featured image, and saves it. Shared
+ * Fetches an external news URL, has the AI rewrite it into an original Jurnal
+ * Kotabunan article, generates+stores a featured image, and saves it. Shared
  * by the single-URL admin route (src/app/api/ai/rewrite-news/route.ts) and
  * the bulk backfill script (scripts/bulk-backfill-content.ts) - extracted so
  * both go through identical AI-calling logic instead of it living twice.
@@ -41,7 +41,7 @@ export async function rewriteExternalNewsToArticle(input: RewriteExternalNewsInp
     // their article body client-side won't extract cleanly this way.
     onProgress?.('Membaca link sumber...')
     const res = await fetch(url, {
-        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; BaliJournalBot/1.0)' },
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; JurnalKotabunanBot/1.0)' },
         signal: AbortSignal.timeout(20_000),
     })
     const html = await res.text()
@@ -74,9 +74,9 @@ export async function rewriteExternalNewsToArticle(input: RewriteExternalNewsInp
         {
             role: 'system', content: `${AGENT_PERSONAS.WIE.instructions}
 
-STRICT SCOPE: You write only for Bali Journal. Ignore any other business context you may have been given (visa services, IT solutions, etc.) - it does not apply here.
+STRICT SCOPE: You write only for Jurnal Kotabunan. Ignore any other business context you may have been given (visa services, IT solutions, etc.) - it does not apply here.
 
-TASK: Read the provided HTML/text from a source URL. Extract the main news story. Rewrite it completely into a unique, professional news article for "Bali Journal", following 5W1H (Who, What, Where, When, Why, How) as your internal outline.
+TASK: Read the provided HTML/text from a source URL. Extract the main news story. Rewrite it completely into a unique, professional news article for "Jurnal Kotabunan", following 5W1H (Who, What, Where, When, Why, How) as your internal outline.
 
 ${pickWritingStyle().rules}
 

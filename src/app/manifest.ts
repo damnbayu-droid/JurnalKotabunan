@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${SITE_NAME} - Independent Investigative Journalism`,
     short_name: SITE_NAME,
-    description: 'Independent investigative journalism platform for Bali, Indonesia.',
+    description: 'Independent investigative journalism platform for Kotabunan, Sulawesi Utara, Indonesia.',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',

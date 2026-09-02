@@ -1,11 +1,11 @@
 /**
- * Bali Journal — Migrate local article/ad images to cloud storage
+ * Jurnal Kotabunan — Migrate local article/ad images to cloud storage
  *
  * Masalah: sebelum perbaikan ini, image-service.ts menyimpan foto artikel
  * ke public/uploads/articles/ (disk lokal). Folder itu di-gitignore, jadi
  * TIDAK PERNAH ter-push ke GitHub -> TIDAK PERNAH ada di build Vercel ->
  * setiap foto artikel 404 di production (ditemukan 2026-09-01 lewat
- * screenshot balijournal.com yang foto-fotonya broken). Sekarang
+ * screenshot jurnal.kotabunan.com yang foto-fotonya broken). Sekarang
  * generateAndStoreImage()/persistImage() sudah diubah untuk upload ke
  * Supabase Storage (+ Vercel Blob fallback) - tapi itu cuma berlaku untuk
  * foto BARU. Script ini memindahkan +170 file YANG SUDAH ADA di disk lokal

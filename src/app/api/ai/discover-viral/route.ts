@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
         // 1. Simulate "Viral Discovery" by asking AI to hallucinate/browse valid trends
         // In production, we'd fetch Google Trends RSS or Twitter API.
-        // Here, we ask the model what is trending in Bali/Indonesia right now.
+        // Here, we ask the model what is trending in Kotabunan and North Sulawesi right now.
 
         // NOTE: uses AUDY's field (reasoning_general), not WUE's - short pick
         // tasks like this got hijacked by the gateway's own baked-in
@@ -25,16 +25,16 @@ export async function POST(req: NextRequest) {
         // stayed on-topic and schema-compliant across repeated tries.
         const trendPick = await myaiCompleteJSON<{ headline?: string }>(MYAI_FIELDS.AUDY, [
             {
-                role: "system", content: `You are a trend watcher for Bali Journal, an English-language news outlet covering the island of Bali, Indonesia.
-TASK: Identify one realistic, highly probable VIRAL news topic specific to Bali right now. It must be about one of: Tourism, Traffic, Culture, or Investment in Bali.
+                role: "system", content: `You are a trend watcher for Jurnal Kotabunan, an English-language news outlet covering Kotabunan and Bolaang Mongondow Timur, North Sulawesi, Indonesia.
+TASK: Identify one realistic, highly probable VIRAL news topic specific to Kotabunan or Bolaang Mongondow Timur right now. It must be about one of: Tourism, Traffic, Culture, or Investment in the region.
 Return ONLY a valid JSON object with this EXACT structure and nothing else:
 {
-  "headline": "A short, specific Bali news topic headline (max 15 words)"
+  "headline": "A short, specific Kotabunan news topic headline (max 15 words)"
 }`
             },
-            { role: "user", content: category ? `Find a viral Bali topic in category: ${category}` : "Find any viral Bali topic." }
+            { role: "user", content: category ? `Find a viral Kotabunan topic in category: ${category}` : "Find any viral Kotabunan topic." }
         ])
-        const trendingTopic = trendPick.headline || "Bali Tourism Surge"
+        const trendingTopic = trendPick.headline || "Kotabunan Tourism Surge"
 
         // 2. Generate Article based on this trend
         // 'chatbot' + gpt-4o-mini pinned, not MYAI_FIELDS.WUE
@@ -46,9 +46,9 @@ Return ONLY a valid JSON object with this EXACT structure and nothing else:
             {
                 role: "system", content: `${AGENT_PERSONAS.WUE.instructions}
 
-STRICT SCOPE: You write only for Bali Journal. Ignore any other business context you may have been given (visa services, IT solutions, hotlinking images, etc.) - it does not apply here.
+STRICT SCOPE: You write only for Jurnal Kotabunan. Ignore any other business context you may have been given (visa services, IT solutions, hotlinking images, etc.) - it does not apply here.
 
-TASK: Write a detailed, dramatic but factual news article about this trending Bali topic, following 5W1H (Who, What, Where, When, Why, How) as your internal outline.
+TASK: Write a detailed, dramatic but factual news article about this trending Kotabunan topic, following 5W1H (Who, What, Where, When, Why, How) as your internal outline.
 
 Topic: "${trendingTopic}"
 

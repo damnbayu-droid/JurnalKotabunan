@@ -57,7 +57,7 @@ up even if the others are low).
 
 riskLevel bands: LOW (0-30), MEDIUM (31-60), HIGH (61-80), CRITICAL (81-100).
 
-Bali Journal's editorial standard for identifying private individuals (not public officials acting in an official capacity): full real names are replaced with initials (e.g. "Made Wirawan" -> "M.W."), street addresses keep only the city/regency and mask the specific house number (e.g. "Jl. Tibungsari No.***, Denpasar"), and phone numbers are partially masked (e.g. "0812****678"). Content following this standard has already adequately de-identified the person - do NOT still score it high on privacyViolation or defamation purely for referring to "M.W." or a masked address/phone; score those categories based on the substance of the claims instead (is the allegation properly attributed, is it unverified, etc.), not the mere presence of a redacted identifier.
+Jurnal Kotabunan's editorial standard for identifying private individuals (not public officials acting in an official capacity): full real names are replaced with initials (e.g. "Ventje Rumondor" -> "V.R."), street addresses keep only the city/regency and mask the specific house number (e.g. "Jl. Trans-Sulawesi No.***, Kotabunan"), and phone numbers are partially masked (e.g. "0812****678"). Content following this standard has already adequately de-identified the person - do NOT still score it high on privacyViolation or defamation purely for referring to "M.W." or a masked address/phone; score those categories based on the substance of the claims instead (is the allegation properly attributed, is it unverified, etc.), not the mere presence of a redacted identifier.
 
 Use the past decisions below (if any) to stay consistent with how similar cases were judged before.
 
@@ -186,14 +186,14 @@ export async function repairCriticalRisk(
       const result = await myaiCompleteJSON<{ title?: string; excerpt?: string; content?: string }>('chatbot', [
         {
           role: 'system',
-          content: `You are a senior editor for Bali Journal fixing an article that legal risk analysis flagged as CRITICAL (attempt ${attempts}/${MAX_REPAIR_ATTEMPTS}). Rewrite it to bring the legal risk down while preserving the newsworthy facts - do not just water down the whole story.
+          content: `You are a senior editor for Jurnal Kotabunan fixing an article that legal risk analysis flagged as CRITICAL (attempt ${attempts}/${MAX_REPAIR_ATTEMPTS}). Rewrite it to bring the legal risk down while preserving the newsworthy facts - do not just water down the whole story.
 
 Highest-scoring risk categories: ${topCategories}.
 Specific recommendations from the legal reviewer: ${(analysis.recommendations || []).join(' | ') || 'none given'}.
 
-Apply Bali Journal's de-identification standard (mandatory, not optional):
-- Real names of private individuals (not public officials acting in an official capacity) must NEVER appear in full - replace with initials, e.g. "Made Wirawan" -> "M.W.". ${category === 'OPINION' ? 'This is an Opinion piece discussing a named person - initials only (e.g. "Bima Arya" -> "BA"), never the full name, even here.' : 'Full real names are not allowed here at all - convert every private individual to initials.'}
-- Street addresses: if the street-level address is essential to the story, WRITE OUT the masked form literally, keeping only the city/regency (kabupaten/kota) and the street name, with the house/building number replaced by asterisks - e.g. "Jl. Tibungsari No.***, Denpasar" instead of "Jl. Tibungsari No.12, Denpasar". If it isn't essential, drop the address entirely and just say the city/regency (or omit it). Never describe the masking in prose (e.g. never write "the address has been withheld") - either show the masked address literally or don't mention it at all.
+Apply Jurnal Kotabunan's de-identification standard (mandatory, not optional):
+- Real names of private individuals (not public officials acting in an official capacity) must NEVER appear in full - replace with initials, e.g. "Ventje Rumondor" -> "V.R.". ${category === 'OPINION' ? 'This is an Opinion piece discussing a named person - initials only (e.g. "Bima Arya" -> "BA"), never the full name, even here.' : 'Full real names are not allowed here at all - convert every private individual to initials.'}
+- Street addresses: if the street-level address is essential to the story, WRITE OUT the masked form literally, keeping only the city/regency (kabupaten/kota) and the street name, with the house/building number replaced by asterisks - e.g. "Jl. Trans-Sulawesi No.***, Kotabunan" instead of "Jl. Trans-Sulawesi No.12, Kotabunan". If it isn't essential, drop the address entirely and just say the city/regency (or omit it). Never describe the masking in prose (e.g. never write "the address has been withheld") - either show the masked address literally or don't mention it at all.
 - Phone numbers: if essential to the story, WRITE OUT the masked digits literally, e.g. "0812****678" instead of the full number. If it isn't essential, drop it entirely. Never describe the masking in prose (e.g. never write "the phone number is masked for privacy") - either show the masked digits literally or don't mention a phone number at all.
 - Attribute claims properly ("allegedly", "according to police/witnesses") instead of stating them as settled fact.
 - Remove unverified claims that can't be attributed to a source.

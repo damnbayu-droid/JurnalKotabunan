@@ -34,30 +34,30 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.balijournal.com'),
+  metadataBase: new URL('https://jurnal.kotabunan.com'),
   title: {
-    default: 'Bali Journal - Independent Investigative Journalism',
-    template: '%s | Bali Journal',
+    default: 'Jurnal Kotabunan - Independent Investigative Journalism',
+    template: '%s | Jurnal Kotabunan',
   },
   // Kept under 160 chars - Bing Webmaster Tools flagged the old 198-char
   // version as an SEO error ("Meta Description too long or too short",
   // Bing's own stated limit is 25-160 chars; Google truncates similarly
   // around ~155-160). Full context lives in openGraph.description /
   // twitter.description below instead, which don't have this constraint.
-  description: 'Bali News updated daily - independent investigative journalism covering Tourism, Government, Investment, Incidents, and Local affairs across Bali, Indonesia.',
-  keywords: ['Bali news', 'Bali news today', 'daily Bali news', 'Bali viral', 'news Bali', 'Investigative Journalism', 'Bali Tourism', 'Bali Investment', 'Bali Government', 'Canggu News', 'Bali Safety', 'Travel Advice Bali', 'Bali Journal'],
+  description: 'Kotabunan news updated daily - independent investigative journalism covering Tourism, Government, Investment, Incidents, and Local affairs across Kotabunan, Bolaang Mongondow Timur, North Sulawesi, Indonesia.',
+  keywords: ['Kotabunan news', 'berita Kotabunan', 'berita Kotabunan hari ini', 'berita Bolaang Mongondow Timur', 'berita Boltim', 'berita Sulawesi Utara', 'Investigative Journalism', 'Kotabunan Tourism', 'Kotabunan Investment', 'Kotabunan Government', 'Boltim News', 'Kotabunan Safety', 'Jurnal Kotabunan'],
   // Root-level default: the homepage's own canonical. Every other route
   // (article, category, /news, /search, static pages) sets its own
   // canonical below/in its own metadata - without an explicit canonical
   // per page, Next.js doesn't emit one at all, and www vs. non-www /
   // trailing-slash variants would otherwise be seen by Google as separate
-  // duplicate URLs instead of consolidating signals onto www.balijournal.com.
+  // duplicate URLs instead of consolidating signals onto jurnal.kotabunan.com.
   alternates: {
     canonical: '/',
   },
-  authors: [{ name: 'Bali Journal Team' }],
-  creator: 'Bali Journal Media',
-  publisher: 'Bali Journal Media',
+  authors: [{ name: 'Jurnal Kotabunan Team' }],
+  creator: 'Jurnal Kotabunan Media',
+  publisher: 'Jurnal Kotabunan Media',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -69,27 +69,27 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   openGraph: {
-    title: 'Bali Journal',
-    description: 'Investigative Journalism Platform for Bali',
-    url: 'https://www.balijournal.com',
-    siteName: 'Bali Journal',
+    title: 'Jurnal Kotabunan',
+    description: 'Investigative Journalism Platform for Kotabunan',
+    url: 'https://jurnal.kotabunan.com',
+    siteName: 'Jurnal Kotabunan',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bali Journal - Investigative Journalism from Bali, Indonesia',
+        alt: 'Jurnal Kotabunan - Investigative Journalism from Kotabunan, North Sulawesi, Indonesia',
       },
     ],
     type: 'website',
-    locale: 'en_US',
+    locale: 'id_ID',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bali Journal',
-    description: 'Independent news from Bali, Indonesia.',
+    title: 'Jurnal Kotabunan',
+    description: 'Independent news from Kotabunan, North Sulawesi, Indonesia.',
     images: ['/og-image.jpg'],
-    creator: '@balijournal',
+    creator: '@jurnalkotabunan',
   },
   robots: {
     index: true,

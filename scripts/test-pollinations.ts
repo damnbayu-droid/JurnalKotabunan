@@ -9,7 +9,7 @@ async function testUrl(name: string, url: string) {
 }
 
 async function main() {
-    const prompt = 'Bali News Test'
+    const prompt = 'Kotabunan News Test'
     const encoded = encodeURIComponent(prompt)
 
     await testUrl('Base', `https://image.pollinations.ai/prompt/${encoded}`)

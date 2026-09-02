@@ -6,8 +6,8 @@ import { Shield, FileText, Users, Eye, CheckCircle, AlertTriangle } from 'lucide
 import { COMPANY_NAME } from '@/lib/site-config'
 
 export const metadata = {
-  title: 'Transparency - Bali Journal',
-  description: 'Bali Journal\'s transparency report - editorial stats and accountability.',
+  title: 'Transparency - Jurnal Kotabunan',
+  description: 'Jurnal Kotabunan\'s transparency report - editorial stats and accountability.',
   alternates: {
     canonical: '/transparency',
   },
@@ -35,7 +35,7 @@ export default async function TransparencyPage() {
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold mb-4">Transparency</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Bali Journal is committed to full transparency in editorial processes, 
+            Jurnal Kotabunan is committed to full transparency in editorial processes, 
             funding, and platform governance.
           </p>
         </div>
@@ -185,14 +185,14 @@ export default async function TransparencyPage() {
               </div>
               <Separator />
               <p className="text-sm text-muted-foreground">
-                Bali Journal is funded through paid advertising - banner and display placements from
+                Jurnal Kotabunan is funded through paid advertising - banner and display placements from
                 vetted advertisers (see our <a href="/ads" className="text-primary hover:underline">Advertise
                 With Us</a> page). Advertising is a pure display placement, never editorial content, and
                 carries no influence over which stories we cover or how we report them.
               </p>
               <p className="text-sm text-muted-foreground">
                 We do not accept sponsorships - arrangements that tie payment to editorial coverage,
-                endorsement, or political backing. Bali Journal is published by {COMPANY_NAME}.
+                endorsement, or political backing. Jurnal Kotabunan is published by {COMPANY_NAME}.
               </p>
             </div>
           </CardContent>
@@ -208,8 +208,8 @@ export default async function TransparencyPage() {
               For questions about transparency or editorial claims:
             </p>
             <div className="space-y-1">
-              <p className="text-sm"><strong>Email:</strong> info@balijournal.com</p>
-              <p className="text-sm"><strong>Address:</strong> Denpasar, Bali, Indonesia</p>
+              <p className="text-sm"><strong>Email:</strong> info@jurnal.kotabunan.com</p>
+              <p className="text-sm"><strong>Address:</strong> Kotabunan, Bolaang Mongondow Timur, Sulawesi Utara, Indonesia</p>
             </div>
           </CardContent>
         </Card>

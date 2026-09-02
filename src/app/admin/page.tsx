@@ -1738,7 +1738,7 @@ export default function MasterAdminDashboard() {
           <div className="flex items-center gap-2 px-2 py-1">
             <LayoutDashboard className="h-6 w-6 text-primary shrink-0" />
             <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-              <span className="font-bold text-sm leading-tight">Bali Journal Master</span>
+              <span className="font-bold text-sm leading-tight">Jurnal Kotabunan Master</span>
               <Badge variant="secondary" className="w-fit text-[10px] mt-0.5">v2.1.0</Badge>
             </div>
           </div>
@@ -1866,7 +1866,7 @@ export default function MasterAdminDashboard() {
             <div className="grid gap-6">
               <div>
                 <h2 className="text-xl font-semibold">Welcome back, Admin</h2>
-                <p className="text-sm text-muted-foreground">Here is what's happening on Bali Journal today.</p>
+                <p className="text-sm text-muted-foreground">Here is what's happening on Jurnal Kotabunan today.</p>
               </div>
 
               {/* Most Viewed Article - added per request, above Quick Stats */}
@@ -2231,7 +2231,7 @@ export default function MasterAdminDashboard() {
                                 required
                               />
                               <p className="text-xs text-muted-foreground">
-                                Bagian URL artikel: balijournal.com/article/<span className="font-mono">{articleForm.slug || '...'}</span>. Terisi otomatis dari judul, bisa diubah manual.
+                                Bagian URL artikel: jurnal.kotabunan.com/article/<span className="font-mono">{articleForm.slug || '...'}</span>. Terisi otomatis dari judul, bisa diubah manual.
                               </p>
                             </div>
                           </div>
@@ -2772,7 +2772,7 @@ export default function MasterAdminDashboard() {
                 </CardTitle>
                 <CardDescription>
                   Pesan dari Form Contact situs. Balasan dikirim via Resend dari {' '}
-                  <span className="font-mono">contact@balijournal.com</span> - tidak perlu app password Gmail.
+                  <span className="font-mono">contact@jurnal.kotabunan.com</span> - tidak perlu app password Gmail.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -4242,15 +4242,15 @@ export default function MasterAdminDashboard() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label>Site Name</Label>
-                      <Input defaultValue="Bali Journal" />
+                      <Input defaultValue="Jurnal Kotabunan" />
                     </div>
                     <div className="space-y-2">
                       <Label>Site URL</Label>
-                      <Input defaultValue="https://www.balijournal.com" />
+                      <Input defaultValue="https://jurnal.kotabunan.com" />
                     </div>
                     <div className="space-y-2">
                       <Label>Admin Email</Label>
-                      <Input defaultValue="admin@balijournal.com" />
+                      <Input defaultValue="admin@jurnal.kotabunan.com" />
                     </div>
                     <div className="space-y-2">
                       <Label>Default Language</Label>

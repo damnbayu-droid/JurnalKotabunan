@@ -33,13 +33,13 @@ async function validateImageUrl(url: string): Promise<boolean> {
 }
 
 function extractKeywords(title: string): string {
-    const ignored = ['bali', 'the', 'and', 'for', 'with', 'announces', 'faces', 'rising']
+    const ignored = ['kotabunan', 'the', 'and', 'for', 'with', 'announces', 'faces', 'rising']
     return title.toLowerCase()
         .replace(/[^a-z0-9 ]/g, '')
         .split(' ')
         .filter(w => w.length > 3 && !ignored.includes(w))
         .slice(0, 2)
-        .join(',') || 'bali,news'
+        .join(',') || 'kotabunan,news'
 }
 
 async function main() {

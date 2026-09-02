@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import { LEGAL_PAGES_LAST_UPDATED } from '@/lib/site-config'
 
 export const metadata: Metadata = {
-    title: 'Privacy Policy - Bali Journal',
-    description: 'Privacy Policy for Bali Journal.',
+    title: 'Privacy Policy - Jurnal Kotabunan',
+    description: 'Privacy Policy for Jurnal Kotabunan.',
     alternates: {
         canonical: '/privacy-policy',
     },
@@ -19,7 +19,7 @@ export default function PrivacyPolicyPage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
                     <p>
-                        Bali Journal is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.
+                        Jurnal Kotabunan is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.
                     </p>
                 </section>
 
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
                 <section>
                     <h2 className="text-xl font-semibold mb-2">5. Contact Us</h2>
                     <p>
-                        If you have any questions about this Privacy Policy, please contact us at privacy@balijournal.com.
+                        If you have any questions about this Privacy Policy, please contact us at privacy@jurnal.kotabunan.com.
                     </p>
                 </section>
             </div>

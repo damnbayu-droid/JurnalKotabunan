@@ -143,7 +143,7 @@ export async function generateMetadata({ params }: ArticlePageProps) {
   // array - an article with no featured image (should be rare after the
   // storage fix, but e.g. mid-generation failures) would otherwise share
   // with NO image preview at all on WhatsApp/Facebook/etc, which is worse
-  // than showing the generic Bali Journal card.
+  // than showing the generic Jurnal Kotabunan card.
   const ogImageUrl = article.featuredImageUrl || `${SITE_URL}/og-image.jpg`
   const canonicalUrl = `${SITE_URL}/article/${article.slug}`
 
@@ -163,7 +163,7 @@ export async function generateMetadata({ params }: ArticlePageProps) {
       publishedTime: article.publishedAt?.toISOString(),
       modifiedTime: article.updatedAt?.toISOString(),
       section: article.category.charAt(0) + article.category.slice(1).toLowerCase(),
-      authors: [article.author?.name || 'Bali Journal Team'],
+      authors: [article.author?.name || 'Jurnal Kotabunan Team'],
       images: [
         {
           url: ogImageUrl,
@@ -289,7 +289,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                <span>{article.author?.name || <LangText en="Bali Journal Team" id="Tim Bali Journal" />}</span>
+                <span>{article.author?.name || <LangText en="Jurnal Kotabunan Team" id="Tim Jurnal Kotabunan" />}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
