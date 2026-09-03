@@ -27,6 +27,9 @@ import { generateCloudflareImage, cloudflareImageConfigured, CF_IMAGE_MODELS } f
 
 const ARGV = process.argv.slice(2)
 const WRITE = ARGV.includes('--write')
+// --reconvert: don't generate new images; re-encode existing non-.webp
+// featured images to WebP via persistImage() and swap the URL.
+const RECONVERT = ARGV.includes('--reconvert')
 const LIMIT = Number((ARGV.find((a) => a.startsWith('--limit='))?.split('=')[1]) || (ARGV.includes('--limit') ? ARGV[ARGV.indexOf('--limit') + 1] : 0)) || 0
 
 const BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
@@ -91,7 +94,36 @@ async function generateFor(prompt: string, cleanTitle: string, slotIdx: number):
     return null
 }
 
+async function reconvert() {
+    const rows = await db.article.findMany({
+        where: { featuredImageUrl: { not: null } },
+        select: { id: true, title: true, slug: true, featuredImageUrl: true },
+        orderBy: { publishedAt: 'asc' },
+        ...(LIMIT ? { take: LIMIT } : {}),
+    })
+    const stale = rows.filter((r) => r.featuredImageUrl && !r.featuredImageUrl.endsWith('.webp'))
+    console.log(`${rows.length} with image, ${stale.length} not yet .webp.`)
+    if (!WRITE) { console.log('DRY RUN - pass --write.'); return }
+
+    let done = 0, failed = 0
+    for (const [i, a] of stale.entries()) {
+        try {
+            const img = await fetchImage(a.featuredImageUrl!)
+            if (!img) throw new Error('could not download current image')
+            const url = await persistImage(img.buffer, img.contentType, a.slug || a.title)
+            await db.article.update({ where: { id: a.id }, data: { featuredImageUrl: url } })
+            done++
+            console.log(`[${i + 1}/${stale.length}] ✅ ${a.title.slice(0, 64)}`)
+        } catch (err) {
+            failed++
+            console.error(`[${i + 1}/${stale.length}] ❌ ${a.title.slice(0, 64)} :: ${(err as Error).message.slice(0, 140)}`)
+        }
+    }
+    console.log(`\nDONE. reconverted=${done} failed=${failed}`)
+}
+
 async function main() {
+    if (RECONVERT) return reconvert()
     const where = { featuredImageUrl: null }
     const total = await db.article.count({ where })
     let articles = await db.article.findMany({

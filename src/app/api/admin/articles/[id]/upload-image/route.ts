@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import sharp from 'sharp'
 import { db } from '@/lib/db'
 import { getSession } from '@/lib/auth/session'
 import { persistImage, splitIntoParagraphBlocks } from '@/lib/images/image-service'
 
 const MAX_IMAGES_PER_ARTICLE = 3
 const MAX_UPLOAD_BYTES = 15 * 1024 * 1024 // 15MB - generous ceiling for a photo before WebP conversion
-const WEBP_MAX_WIDTH = 1600 // good visual quality without an oversized file
-const WEBP_QUALITY = 82
 
 type Position = 'top' | 'middle' | 'bottom'
 
@@ -76,12 +73,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
         }
 
         const inputBuffer = Buffer.from(await file.arrayBuffer())
-        const webpBuffer = await sharp(inputBuffer)
-            .resize({ width: WEBP_MAX_WIDTH, withoutEnlargement: true })
-            .webp({ quality: WEBP_QUALITY })
-            .toBuffer()
-
-        const localPath = await persistImage(webpBuffer, 'image/webp', article.title)
+        // persistImage() handles the resize + WebP conversion centrally now.
+        const localPath = await persistImage(inputBuffer, file.type || 'image/jpeg', article.title)
 
         if (position === 'top') {
             const updated = await db.article.update({

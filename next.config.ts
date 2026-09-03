@@ -103,11 +103,11 @@ const nextConfig: NextConfig = {
       },
       {
         // Supabase Storage - primary article/ad image host (see
-        // src/lib/storage/upload-image.ts). Project-specific hostname, not
-        // a wildcard, since NEXT_PUBLIC_SUPABASE_URL is a single fixed
-        // project for this app.
+        // src/lib/storage/upload-image.ts). Wildcarded to the public
+        // storage path so a Supabase project-ref change (rebrand, branch
+        // project) doesn't silently break every article photo.
         protocol: 'https',
-        hostname: 'upmuvcahgmzuztdhdzap.supabase.co',
+        hostname: '*.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
       {

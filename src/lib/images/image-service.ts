@@ -1,4 +1,12 @@
+import sharp from 'sharp'
 import { uploadImage } from '@/lib/storage/upload-image'
+
+// Every stored article image is normalised to WebP at a sane max width -
+// generators hand back anything from a 40 KB Pollinations JPEG to a 1.5 MB
+// SDXL PNG, and we want one consistent, web-optimised format on disk (same
+// convention the admin manual-upload route already used).
+const WEBP_MAX_WIDTH = 1600
+const WEBP_QUALITY = 82
 
 /**
  * Centralised image pipeline for Jurnal Kotabunan.
@@ -318,22 +326,50 @@ async function downloadImage(
     }
 }
 
-/** Uploads the image to persistent cloud storage and returns its public URL. Exported so upload endpoints (e.g. manual admin image uploads) can reuse the same storage convention as AI-generated images. Throws if both storage backends fail. */
+/**
+ * Converts any image to a width-capped WebP and uploads it to persistent
+ * cloud storage, returning its public URL. Exported so upload endpoints
+ * (e.g. manual admin image uploads) share one storage + format convention.
+ * `contentType` is only a hint for the rare case sharp can't decode the
+ * input - the stored file is always image/webp. Throws if both storage
+ * backends fail.
+ */
 export async function persistImage(
     buffer: Buffer,
-    contentType: string,
+    _contentType: string,
     baseName: string
 ): Promise<string> {
-    const safe =
+    let webp: Buffer
+    try {
+        webp = await sharp(buffer)
+            .rotate() // honour EXIF orientation before stripping metadata
+            .resize({ width: WEBP_MAX_WIDTH, withoutEnlargement: true })
+            .webp({ quality: WEBP_QUALITY })
+            .toBuffer()
+    } catch (err) {
+        // sharp couldn't decode it (corrupt / unusual codec) - fall back to
+        // storing the original bytes rather than losing the image entirely.
+        console.warn('persistImage: WebP conversion failed, storing original:', (err as Error).message)
+        const safeName = sanitizeBaseName(baseName)
+        const raw = await uploadImage(buffer, _contentType || 'application/octet-stream', `${safeName}-${randomSeed().toString(36)}.${extensionFor(_contentType)}`)
+        if (!raw) throw new Error('Both Supabase Storage and Vercel Blob uploads failed')
+        return raw.url
+    }
+
+    const fileName = `${sanitizeBaseName(baseName)}-${randomSeed().toString(36)}.webp`
+    const result = await uploadImage(webp, 'image/webp', fileName)
+    if (!result) throw new Error('Both Supabase Storage and Vercel Blob uploads failed')
+    return result.url
+}
+
+function sanitizeBaseName(baseName: string): string {
+    return (
         baseName
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
             .slice(0, 80) || 'image'
-    const fileName = `${safe}-${randomSeed().toString(36)}.${extensionFor(contentType)}`
-    const result = await uploadImage(buffer, contentType, fileName)
-    if (!result) throw new Error('Both Supabase Storage and Vercel Blob uploads failed')
-    return result.url
+    )
 }
 
 // ---------------------------------------------------------------------------
