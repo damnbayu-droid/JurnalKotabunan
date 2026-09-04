@@ -45,10 +45,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: article.publishedAt && Date.now() - article.publishedAt.getTime() < 3 * 24 * 3600 * 1000 ? 0.9 : 0.7,
     }))
 
-    // 3. Category Routes - was missing GOVERNMENT, the single largest
-    // category in the dataset, so its 20+ articles' category page was
-    // never being surfaced to crawlers via this list at all.
-    const categories = ['tourism', 'government', 'investment', 'incidents', 'local', 'jobs', 'opinion']
+    // 3. Category Routes - kept in sync with validCategories in
+    // src/app/category/[category]/page.tsx (9 categories after the
+    // LOCAL/JOBS -> ENVIRONMENT/PANANG/INTERNATIONAL/TECHNOLOGY enum
+    // change). This list previously still had 'local'/'jobs' (both now
+    // 404 - not in validCategories) and was missing the 4 new slugs, so
+    // crawlers never found those category pages at all.
+    const categories = ['government', 'tourism', 'investment', 'incidents', 'environment', 'panang', 'international', 'technology', 'opinion']
     const categoryRoutes = categories.map((cat) => ({
         url: `${SITE_URL}/category/${cat}`,
         lastModified: new Date(),

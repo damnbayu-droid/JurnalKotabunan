@@ -17,21 +17,25 @@ import { Input } from '@/components/ui/input'
 
 const categories = {
   en: [
-    { href: '/category/tourism', label: 'Tourism' },
     { href: '/category/government', label: 'Government' },
+    { href: '/category/tourism', label: 'Tourism' },
     { href: '/category/investment', label: 'Investment' },
     { href: '/category/incidents', label: 'Incidents' },
-    { href: '/category/local', label: 'Local' },
-    { href: '/category/jobs', label: 'Jobs' },
+    { href: '/category/environment', label: 'Environment' },
+    { href: '/category/panang', label: 'Panang' },
+    { href: '/category/international', label: 'International' },
+    { href: '/category/technology', label: 'Technology' },
     { href: '/category/opinion', label: 'Opinion' },
   ],
   id: [
+    { href: '/category/government', label: 'Pemerintahan' },
     { href: '/category/tourism', label: 'Pariwisata' },
-    { href: '/category/government', label: 'Pemerintah' },
     { href: '/category/investment', label: 'Investasi' },
     { href: '/category/incidents', label: 'Insiden' },
-    { href: '/category/local', label: 'Lokal' },
-    { href: '/category/jobs', label: 'Pekerjaan' },
+    { href: '/category/environment', label: 'Lingkungan Hidup' },
+    { href: '/category/panang', label: 'Panang' },
+    { href: '/category/international', label: 'Internasional' },
+    { href: '/category/technology', label: 'Teknologi' },
     { href: '/category/opinion', label: 'Opini' },
   ],
 }

@@ -122,6 +122,17 @@ function parseDoc(): Entry[] {
             header = []
             continue
         }
+        // BUG FIXED (2026-09-05): any OTHER top-level "## " heading (Lampiran
+        // A, Ringkasan Akhir & Peta Gap) used to leave `category`/`header`
+        // pointing at whatever Field section came last, so those closing
+        // meta/summary tables got parsed as real dated entries in that
+        // field and turned into fabricated articles (confirmed: 8 bogus
+        // "riset gagal / kuota habis" TECHNOLOGY articles, all dated
+        // 2026-07-01 - the bare-year date-parse fallback below - because
+        // the doc's own methodology notes got fed to the generator as if
+        // they were news). Any unrecognised "## " now clears category so
+        // nothing after the last real Field section can be parsed as one.
+        if (/^##\s/.test(line) && !fieldMatch) { category = null; header = []; continue }
         if (/^###\s+6a\./.test(line)) { inHistorySection = true; header = []; continue }
         if (/^###\s+6[bc]/.test(line)) { inHistorySection = false; header = []; continue }
         if (/^###\s/.test(line)) { header = []; continue }
@@ -150,7 +161,11 @@ function parseDoc(): Entry[] {
         if (!date || isNaN(date.getTime())) continue
         if (date.getUTCFullYear() < 2021 || date > new Date()) continue
 
-        const sources = [...extractUrls(col('link sumber utama')), ...extractUrls(col('link tambahan'))]
+        // Most tables header this "Link Sumber Utama", but the Internasional
+        // 2022-2024 table just says "Link Sumber" - col('link sumber utama')
+        // doesn't match that shorter header, so those rows silently got no
+        // sourceUrl. Fall back to the plainer "link sumber" too.
+        const sources = [...extractUrls(col('link sumber utama') || col('link sumber')), ...extractUrls(col('link tambahan'))]
         entries.push({
             field, category, title, summary, dateRaw: dateRaw || monthYear, date,
             location: col('tag lokasi') || 'Kotabunan / Boltim', sources, note,
